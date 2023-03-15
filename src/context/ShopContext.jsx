@@ -20,14 +20,14 @@ export default function ShopContextProvider(props){
 
     const addToCart = (id) =>{
         setCartItems((prev) => new Map(prev).set(id, prev.get(id)+ 1));
-        if(cartItems.get(id) == 0){
+        if(cartItems.get(id) === 0){
             setCartQuantity((prev) => prev + 1);
         }
     }
 
     const decreaseCountInCart = (id) =>{
         setCartItems((prev) => new Map(prev).set(id, prev.get(id)-1))
-        if(cartItems.get(id) == 1){
+        if(cartItems.get(id) === 1){
             setCartQuantity((prev) => prev - 1);
         }
     }

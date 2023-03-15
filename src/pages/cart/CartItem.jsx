@@ -10,7 +10,7 @@ export default function CartItem(props){
 
     return(
         <div className="bg-white flex justify-center py-5 items-center">
-            <img className=" h-80 w-72 object-cover" alt={description} src={productImage}/>
+            <img className=" h-80 w-72 object-cover rounded-lg" alt={description} src={productImage}/>
             <div className="flex flex-col px-5">
                 <h1 className="text-center py-2">{product_name}</h1>
                 <h3 className="text-center">Price: ${price}</h3>
