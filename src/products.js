@@ -45,7 +45,7 @@ export const PRODUCTS =
         description: "iPhone 14 Pro and 14 Pro Max. With Dynamic Island. Emergency SOS via satellite. Crash Detection. An innovative 48MP camera. And A16 Bionic.",
         productImage: productImages[0]
     },{
-        id: 5,
+        id: 6,
         product_name:"Google Pixel 7 Pro",
         price: 999.00,
         category: "technology",
