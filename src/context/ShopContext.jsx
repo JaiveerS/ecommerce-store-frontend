@@ -26,10 +26,10 @@ export default function ShopContextProvider(props){
     }
 
     const removeFromCart = (id) =>{
-        setCartItems((prev) => new Map(prev).set(0))
+        setCartItems((prev) => new Map(prev).set(id, 0))
     }
 
-    
+    console.log(cartItems)
     
     const contextValue= {cartItems, addToCart, decreaseCountInCart, removeFromCart}
     

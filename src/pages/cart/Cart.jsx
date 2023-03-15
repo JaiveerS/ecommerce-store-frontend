@@ -5,17 +5,17 @@ import CartItem from "./CartItem";
 
 export default function Cart() {
 
-    const {addToCart, cartItems} = useContext(ShopContext)
+    const {cartItems} = useContext(ShopContext)
 
     return (
         <div>
             <div>
-                <h1>Your Cart</h1>
+                <h1 className="text-center">Your Cart</h1>
             </div>
             <div>
                 {PRODUCTS.map((product) => {
                         if(cartItems.get(product.id) !== 0){
-                            return <CartItem data={product}/>
+                            return <CartItem data={product} extra={cartItems.get(product.id)}/>
                         }
                     }
                 )
