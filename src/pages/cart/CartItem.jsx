@@ -3,7 +3,7 @@ import { ShopContext } from "../../context/ShopContext";
 
 
 export default function CartItem(props){
-    const {id,product_name,price,category,description,productImage} = props.data
+    const {id,product_name,price,description,productImage} = props.data
     const count = props.extra
     const {addToCart, decreaseCountInCart, removeFromCart} = useContext(ShopContext)
 
