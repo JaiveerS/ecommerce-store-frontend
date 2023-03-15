@@ -10,7 +10,7 @@ export default function Cart() {
     return (
         <div>
             <div>
-                <h1 className="text-center">Your Cart</h1>
+                <h1 className="text-5xl font-bold mb-6 pt-10 text-center">Your Cart</h1>
             </div>
             <div>
                 {PRODUCTS.map((product) => {
