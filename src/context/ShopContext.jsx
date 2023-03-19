@@ -16,6 +16,7 @@ function getDefaultCart()
 export default function ShopContextProvider(props){
     const [cartItems, setCartItems] = useState(getDefaultCart());
     const [cartQuantity, setCartQuantity] = useState(0);
+    const [product, setProduct] = useState([])
 
 
     const addToCart = (id) =>{
@@ -40,7 +41,7 @@ export default function ShopContextProvider(props){
 
     console.log(cartItems.size)
     
-    const contextValue= {cartQuantity,cartItems, addToCart, decreaseCountInCart, removeFromCart}
+    const contextValue= {product,setProduct, cartQuantity,cartItems, addToCart, decreaseCountInCart, removeFromCart}
     
     return(
         <ShopContext.Provider value={contextValue}>

@@ -8,6 +8,7 @@ export default function Cart() {
     const {cartItems} = useContext(ShopContext)
 
     return (
+        <div className="bg-white flex justify-center py-5 items-center">
         <div>
             <div>
                 <h1 className="text-5xl font-bold mb-6 pt-10 text-center">Your Cart</h1>
@@ -21,6 +22,7 @@ export default function Cart() {
                 )
                 }
             </div>
+        </div>
         </div>
     )
 }
