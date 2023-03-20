@@ -11,7 +11,7 @@ export default function Home() {
 
     function getProducts (){
         axios.get(endpoint).then((response)=> {
-            console.log(response.data._embedded.productList)
+            // console.log(response.data._embedded.productList)
             setProduct(response.data._embedded.productList)
         })
     }

@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Cart from "./pages/cart/Cart";
-import APIService from "./APIService";
+// import APIService from "./APIService";
 
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
             <Route exact path="/" element={<Home />}/>
             <Route exact path="/login" element={<Login />}/>
             <Route exact path="/cart" element={<Cart />}/>
-            <Route exact path="/axios" element={<APIService />}/>          
+            {/* <Route exact path="/axios" element={<APIService />}/>           */}
           </Routes>
         </Router>
       </ShopContextProvider>
