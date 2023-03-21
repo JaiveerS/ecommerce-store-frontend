@@ -7,17 +7,20 @@ import Product from "./Product";
 export default function Home() {
     const endpoint = "http://localhost:8080/api/products";
 
-    const {product, setProduct} = useContext(ShopContext)    
+    const {product, setProduct,cartItems, setCartItems, getDefaultCart} = useContext(ShopContext)    
 
     function getProducts (){
         axios.get(endpoint).then((response)=> {
-            // console.log(response.data._embedded.productList)
             setProduct(response.data._embedded.productList)
         })
     }
 
     useEffect(() => {
         getProducts();
+        if (cartItems.size === 0){
+            setCartItems(getDefaultCart(product))
+        }
+        
     })
 
     return (

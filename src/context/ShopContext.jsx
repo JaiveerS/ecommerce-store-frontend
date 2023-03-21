@@ -1,22 +1,22 @@
 import React, { createContext, useState } from "react";
-import { PRODUCTS } from "../products";
+// import { PRODUCTS } from "../products";
 
 
 export const ShopContext = createContext(null);
 
-function getDefaultCart()
+export function getDefaultCart(product)
 {
     let cart = new Map();
-    for(let i=0; i < PRODUCTS.length; i++){
-        cart.set(PRODUCTS[i].id, 0);
-    }
+    product.forEach(element => {
+        cart.set(element.id, 0);
+    });
     return(cart);
 }
 
 export default function ShopContextProvider(props){
-    const [cartItems, setCartItems] = useState(getDefaultCart());
     const [cartQuantity, setCartQuantity] = useState(0);
     const [product, setProduct] = useState([])
+    const [cartItems, setCartItems] = useState(getDefaultCart(product));
 
 
     const addToCart = (id) =>{
@@ -39,9 +39,9 @@ export default function ShopContextProvider(props){
 
     }
 
-    console.log(cartItems.size)
+    // console.log(cartItems.size)
     
-    const contextValue= {product,setProduct, cartQuantity,cartItems, addToCart, decreaseCountInCart, removeFromCart}
+    const contextValue= {setCartItems,getDefaultCart, product,setProduct, cartQuantity,cartItems, addToCart, decreaseCountInCart, removeFromCart}
     
     return(
         <ShopContext.Provider value={contextValue}>
