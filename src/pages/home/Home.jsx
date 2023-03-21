@@ -17,10 +17,9 @@ export default function Home() {
 
     useEffect(() => {
         getProducts();
-        if (cartItems.size === 0){
+        if (cartItems.size !== product.length){
             setCartItems(getDefaultCart(product))
         }
-        
     })
 
     return (
