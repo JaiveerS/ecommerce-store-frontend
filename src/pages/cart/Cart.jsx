@@ -5,13 +5,13 @@ import CartItem from "./CartItem";
 
 export default function Cart() {
 
-    const {cartItems, product} = useContext(ShopContext)
+    const {cartItems, product, cartQuantity} = useContext(ShopContext)
 
     return (
-        <div className="bg-white flex justify-center py-5 items-center">
+        <div className="bg-white flex justify-center items-center">
         <div>
             <div>
-                <h1 className="text-5xl font-bold mb-6 pt-10 text-center">Your Cart</h1>
+                <h1 className="text-5xl font-bold mb-6 pt-10 text-center">{cartQuantity  === 0 && <>Your Cart is empty.</>}</h1>
             </div>
             <div>
                 {product.map((product) => {
