@@ -1,4 +1,5 @@
 import React, {useContext, useState} from "react";
+import { Link } from "react-router-dom";
 import { ShopContext } from "../../context/ShopContext";
 // import { PRODUCTS } from "../../products";
 import CartItem from "./CartItem";
@@ -14,6 +15,7 @@ export default function Cart() {
         <div className="min-h-screen">
             <div>
                 <h1 className="text-3xl font-bold mb-6 pt-10 text-center">{cartQuantity  > 0 ? 'Shoping Cart' : 'Your Cart is empty.'}</h1>
+                <Link className="hover:underline hover:font-bold text-center" to={"/"}>{cartQuantity  === 0 && ('start shopping')}</Link>
             </div>
             <div>
                 {product.map((product) => {
@@ -24,7 +26,7 @@ export default function Cart() {
                     }
                 )
                 }
-                <h1 className="text-3xl font-bold mb-6 pt-10 text-center">{cartQuantity  > 0 && 'Total =' + total}</h1>
+                <h1 className="text-3xl font-bold mb-6 pt-10 text-center">{cartQuantity  > 0 && 'Total = $' + total}</h1>
             </div>
         </div>
         </div>

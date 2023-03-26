@@ -17,7 +17,6 @@ export default function ShopContextProvider(props){
     const [cartQuantity, setCartQuantity] = useState(0);
     const [product, setProduct] = useState([])
     const [cartItems, setCartItems] = useState(getDefaultCart(product));
-    const [total, setTotal] = useState(0);
 
 
     const addToCart = (id) =>{
