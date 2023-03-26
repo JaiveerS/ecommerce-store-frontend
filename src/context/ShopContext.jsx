@@ -17,26 +17,23 @@ export default function ShopContextProvider(props){
     const [cartQuantity, setCartQuantity] = useState(0);
     const [product, setProduct] = useState([])
     const [cartItems, setCartItems] = useState(getDefaultCart(product));
+    const [total, setTotal] = useState(0);
 
 
     const addToCart = (id) =>{
         setCartItems((prev) => new Map(prev).set(id, prev.get(id)+ 1));
-        if(cartItems.get(id) === 0){
-            setCartQuantity((prev) => prev + 1);
-        }
+        setCartQuantity((prev) => prev + 1);
     }
 
     const decreaseCountInCart = (id) =>{
         setCartItems((prev) => new Map(prev).set(id, prev.get(id)-1))
-        if(cartItems.get(id) === 1){
-            setCartQuantity((prev) => prev - 1);
-        }
+        setCartQuantity((prev) => prev - 1);
     }
 
     const removeFromCart = (id) =>{
+        const amount = cartItems.get(id)
         setCartItems((prev) => new Map(prev).set(id, 0))
-        setCartQuantity((prev) => prev - 1);
-
+        setCartQuantity((prev) => prev - amount);
     }
 
     // console.log(cartItems.size)
