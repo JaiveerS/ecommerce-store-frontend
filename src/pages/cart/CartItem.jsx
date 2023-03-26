@@ -10,7 +10,7 @@ export default function CartItem(props){
 
 
     return(
-        <div className="bg-white flex justify-center items-center">
+        <div className="flex justify-center items-center px-4">
             <Link to={'/product/' + id}><img className=" h-80 w-72 object-cover rounded-lg" alt={description} src={image}/></Link>
             <div className="flex flex-col px-5">
                 <h1 className="text-center py-2">{productName}</h1>

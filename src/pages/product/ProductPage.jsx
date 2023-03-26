@@ -24,17 +24,19 @@ export default function ProductPage(props) {
     })
 
     return (
-        <div className="min-h-screen">
-                <img className=" h-80 w-72 object-cover mx-auto mt-5" alt={product.description} src={product.image}/>
-                <h1 className="text-center py-2">{product.productName}</h1>
-                <h3 className="text-center">Price: ${product.price}</h3>
-                <h4 className="text-center py-2">Category: {product.category}</h4>
-                <p  className="text-center">{product.description}</p>
-                <div className=" flex justify-center py-4">
+        <div className="flex min-h-screen justify-center flex-wrap">
+            <img className=" h-96 w-80 object-cover mt-5" alt={product.description} src={product.image}/>
+            <div className="px-10">
+                <h1 className="pt-10 pb-5">{product.productName}</h1>
+                <h3 className="py-2">Price: ${product.price}</h3>
+                <h4 className="py-2">Category: {product.category}</h4>
+                <p  className="py-2 max-w-md">{product.description}</p>
+                <div className="flex py-4">
                     <button onClick={() => addToCart(id)} className="px-6 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-green-600 hover:text-white border-2 border-gray-900 focus:outline-none">
                         Add To Cart{cartItemAmount > 0 && <>| {cartItemAmount} </>}
                     </button>
                 </div>
+            </div>
         </div>
     )
 }

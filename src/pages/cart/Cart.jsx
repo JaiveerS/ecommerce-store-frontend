@@ -1,7 +1,6 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../../context/ShopContext";
-// import { PRODUCTS } from "../../products";
 import CartItem from "./CartItem";
 
 export default function Cart() {
@@ -23,10 +22,13 @@ export default function Cart() {
                             total += cartItems.get(product.id) * product.price;
                             return <CartItem key={product.id} data={product} extra={cartItems.get(product.id)}/>
                         }
+                        return ""
                     }
                 )
                 }
-                <h1 className="text-3xl font-bold mb-6 pt-10 text-center">{cartQuantity  > 0 && 'Total = $' + total}</h1>
+                {cartQuantity > 0 && <hr className="divide-solid mt-3"></hr>}
+                {total > 0 && <h3 className="text-3xl font-bold mb-6 pt-10 text-right" value="true">Total = ${total}</h3>}
+                {cartQuantity > 0 && <button className="float-right px-6 py-2 mb-5 transition ease-in duration-200 uppercase rounded-full hover:bg-green-600 hover:text-white border-2 border-gray-900 focus:outline-none ">Checkout</button>}
             </div>
         </div>
         </div>
