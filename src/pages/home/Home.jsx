@@ -8,7 +8,7 @@ export default function Home() {
 
     return (
         <div>
-        <div className="flex flex-col items-center min-h-screen bg-gray-50">
+        <div className="flex flex-col items-center min-h-screen">
             <div className="flex space-between flex-wrap justify-center p-10">
             {product.map((item => (
                     <Product key={item.id} data={item}/>
