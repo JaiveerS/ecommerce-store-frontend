@@ -6,7 +6,9 @@ import axios from "axios";
 
 
 export default function Navbar() {
-    const endpoint = "http://localhost:8080/api/products";
+    // const endpoint = "http://localhost:8080/api/products";
+    const endpoint = "https://shop-backend-production-c1c2.up.railway.app/api/products";
+
 
     const {cartQuantity} = useContext(ShopContext)
     const {product, setProduct,cartItems, setCartItems, getDefaultCart} = useContext(ShopContext)    
