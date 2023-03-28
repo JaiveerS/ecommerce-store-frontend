@@ -8,7 +8,7 @@ export default function ProductPage(props) {
     let path = window.location.pathname.split('/')
     const id = parseInt(path[2]);
     // const endpoint = "http://localhost:8080/api/products/" + id;
-    const endpoint = "https://140.238.155.208:8080/api/products/" + id;
+    const endpoint = "http://140.238.155.208:8080/api/products/" + id;
 
     const {addToCart, cartItems} = useContext(ShopContext)
     const [product, setProduct] = useState([])
