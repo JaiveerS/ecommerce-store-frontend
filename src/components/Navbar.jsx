@@ -6,8 +6,8 @@ import axios from "axios";
 
 
 export default function Navbar() {
-    // const endpoint = "http://localhost:8080/api/products";
-    const endpoint = "http://140.238.155.208:8080/api/products";
+    const endpoint = "http://localhost:8080/api/products";
+    // const endpoint = "http://140.238.155.208:8080/api/products";
 
 
     const {cartQuantity} = useContext(ShopContext)
