@@ -29,8 +29,8 @@ export default function Cart() {
                 {cartQuantity > 0 && (
                 <div>
                     <hr className="divide-solid mt-3"></hr>
-                    <h3 className="text-3xl font-bold mb-6 pt-10 text-right" value="true">Total = ${total}</h3>
-                    <button className="float-right px-6 py-2 mb-5 transition ease-in duration-200 uppercase rounded-full hover:bg-green-600 hover:text-white border-2 border-gray-900 focus:outline-none ">Checkout</button>
+                    <h3 className="text-3xl font-bold mr-4 mb-6 pt-10 text-right" value="true">Total = ${total}</h3>
+                    <button className="float-right px-6 mr-3 py-2 mb-5 transition ease-in duration-200 uppercase rounded-full hover:bg-green-600 hover:text-white border-2 border-gray-900 focus:outline-none ">Checkout</button>
                 </div>)}
             </div>
         </div>
