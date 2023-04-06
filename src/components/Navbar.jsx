@@ -6,11 +6,8 @@ import axios from "axios";
 
 
 export default function Navbar() {
-    const endpoint = "http://localhost:8080/api/products";
-    // const endpoint = "http://140.238.155.208:8080/api/products";
 
-
-    const {cartQuantity} = useContext(ShopContext)
+    const {cartQuantity, endpoint, jwt} = useContext(ShopContext)
     const {product, setProduct,cartItems, setCartItems, getDefaultCart} = useContext(ShopContext)    
 
     function getProducts (){
@@ -33,7 +30,7 @@ export default function Navbar() {
                     <Link to={"/"}>TheTrove</Link>
                 </h1>
                 <ul className="flex">
-                    <li className="px-2 text-lg"><Link to={"/login"}>Login</Link></li>
+                    {jwt === null || jwt === "" ? <li className="px-2 text-lg"><Link to={"/login"}>Login</Link></li>: "username here"}
                     <li className="px-2 text-lg"><Link className="flex" to={"/cart"}><CgShoppingCart size={30}/> {cartQuantity}</Link></li>
                 </ul>
             </div>

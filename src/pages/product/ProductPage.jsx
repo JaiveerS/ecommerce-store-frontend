@@ -7,16 +7,15 @@ import { ShopContext } from "../../context/ShopContext";
 export default function ProductPage(props) {
     let path = window.location.pathname.split('/')
     const id = parseInt(path[2]);
-    const endpoint = "http://localhost:8080/api/products/" + id;
-    // const endpoint = "http://140.238.155.208:8080/api/products/" + id;
 
-    const {addToCart, cartItems} = useContext(ShopContext)
+    const {addToCart, cartItems, endpoint} = useContext(ShopContext)
     const [product, setProduct] = useState([])
 
+    const thisEndpoint = endpoint + "/" + id;
     const cartItemAmount = cartItems.get(id);
 
     function getProducts (){
-        axios.get(endpoint).then((response)=> {
+        axios.get(thisEndpoint).then((response)=> {
             setProduct(response.data)
         })
     }
@@ -29,7 +28,7 @@ export default function ProductPage(props) {
         <div>
         {product.price > 0 && (
         <div className="flex min-h-screen justify-center flex-wrap">
-            <img className=" h-96 w-80 object-cover mt-5" alt={product.description} src={product.image}/>
+            <img className="object-contain h-96 w-80 mt-5" alt={product.description} src={product.image}/>
                 <div className="px-10">
                     <h1 className="pt-10 pb-5">{product.productName}</h1>
                     <h3 className="py-2">Price: ${product.price}</h3>

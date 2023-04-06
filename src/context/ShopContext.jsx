@@ -14,6 +14,11 @@ export function getDefaultCart(product)
 }
 
 export default function ShopContextProvider(props){
+    const endpoint = "http://localhost:8080/api/products";
+    // const endpoint = "http://140.238.129.201:8080/api/products";
+    const authEndpoint = "http://localhost:8080/api/auth";
+
+    const [jwt, setJwt] = useState("");
     const [cartQuantity, setCartQuantity] = useState(0);
     const [product, setProduct] = useState([])
     const [cartItems, setCartItems] = useState(getDefaultCart(product));
@@ -37,7 +42,7 @@ export default function ShopContextProvider(props){
 
     // console.log(cartItems.size)
     
-    const contextValue= {setCartItems,getDefaultCart, product,setProduct, cartQuantity,cartItems, addToCart, decreaseCountInCart, removeFromCart}
+    const contextValue= {jwt, setJwt, endpoint,authEndpoint, setCartItems,getDefaultCart, product,setProduct, cartQuantity,cartItems, addToCart, decreaseCountInCart, removeFromCart}
     
     return(
         <ShopContext.Provider value={contextValue}>
