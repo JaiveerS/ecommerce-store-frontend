@@ -24,7 +24,7 @@ export default function Cart() {
         <div className="bg-white flex justify-center items-center">
         <div className="min-h-screen">
             <div>
-                <h1 className="text-3xl font-bold mb-6 pt-10 text-center">{cartQuantity  > 0 ? 'Shoping Cart' : 'Your Cart is empty.'}</h1>
+                <h1 className="text-3xl font-bold mb-2 pt-10 text-center">{cartQuantity  > 0 ? 'Shoping Cart' : 'Your Cart is empty.'}</h1>
                 <Link className="hover:underline hover:font-bold text-center" to={"/"}>{cartQuantity  === 0 && ('start shopping')}</Link>
             </div>
             <div>

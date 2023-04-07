@@ -20,30 +20,28 @@ export default function Checkout(){
 
     return (
         <div className="flex pt-5 min-h-screen">
-            <div>
-            </div>
-            <div className="flex mx-auto">
-                <form className="space-y-4 md:space-y-6 pl-2" action="#">
-                    <div className="">
-                        <h1>Shipping Address </h1>
-                        <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900">Full name (First and Last Name)</label>
-                            <input type="name" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="firstname lastname" required=""/>
+            <div className="flex mx-auto pl-2">
+                <form className="space-y-4 md:space-y-6 pl-2 pr-2" action="#">
+                    <div className="max-w-md">
+                        <h1 className="font-semibold">Shipping Address </h1>
+                        <div className="pt-2">
+                            <label className="block mb-2 text-sm font-medium text-gray-900">Full Name</label>
+                            <input type="name" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="Full name" required=""/>
                         </div>
-                        <div>
+                        <div className="pt-2">
                             <label className="block mb-2 text-sm font-medium text-gray-900">Phone #</label>
-                            <input type="number" name="phonenumber" id="phonenumber" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="***-***-****" required=""/>
+                            <input type="phone" name="phonenumber" id="phonenumber" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="***-***-****" required=""/>
                         </div>
-                        <div>
+                        <div className="pt-2">
                             <label className="block mb-2 text-sm font-medium text-gray-900">Address</label>
                             <input type="name" name="address" id="address" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="Address" required=""/>
                         </div>
-                        <div>
+                        <div className="pt-2">
                             <label className="block mb-2 text-sm font-medium text-gray-900">City</label>
                             <input type="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="City" required=""/>
-                        </div>
-                        <div className="flex">
-                            <div className="flex flex-col justify-between">
+                        </div >
+                        <div className="flex pt-2">
+                            <div className="flex flex-col justify-between pr-2">
                                 <label className="block mb-2 text-sm font-medium text-gray-900">Province</label>
                                 <input type="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="Province" required=""/>
                             </div>
@@ -53,18 +51,18 @@ export default function Checkout(){
                             </div>
                         </div>
                     </div>
-                    <div className="">
-                        <h1>Payment Method</h1>
-                        <div>
+                    <div className="max-w-md">
+                        <h1 className="font-semibold">Payment Method</h1>
+                        <div className="pt-2">
                             <label className="block mb-2 text-sm font-medium text-gray-900">Credit Card Number</label>
                             <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="*** *** ****" required=""/>
                         </div>
-                        <div className="flex">
-                            <div className="flex flex-col justify-between">
-                                <label className="block mb-2 text-sm font-medium text-gray-900">Name on Card</label>
-                                <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="****** *****" required=""/>
-                            </div>
-                            <div className="flex flex-col justify-between">
+                        <div className="flex flex-col justify-between">
+                            <label className="block mb-2 text-sm font-medium text-gray-900">Name on Card</label>
+                            <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="****** *****" required=""/>
+                        </div>
+                        <div className="flex pt-2 pb-5">
+                            <div className="flex flex-col justify-between pr-2">
                                 <label className="block mb-2 text-sm font-medium text-gray-900">Expiration Date</label>
                                 <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="**/**" required=""/>
                             </div>
@@ -77,9 +75,10 @@ export default function Checkout(){
                 </form>
 
 
-                <div className="min-w-fit pl-2">
-                    <h1 className="pl-2 pb-2">Order Summary:</h1>
-                    {product.map((product) => {//change to checkout products where its just a order summary
+                <div className="min-w-fit pl-2 pr-4">
+                    <h1 className="font-bold">Order Summary</h1>
+                    <hr className="divide-solid mt-3 pb-2"></hr>
+                    {product.map((product) => {
                             if(cartItems.get(product.id) !== 0){
                                 total += cartItems.get(product.id) * product.price;
                                 return <OrderMiniSummary key={product.id} data={product} extra={cartItems.get(product.id)}/>
@@ -88,6 +87,7 @@ export default function Checkout(){
                         }
                     )
                     }
+                    {cartQuantity == 0 || jwt == null || jwt == "" ?  navigate('/cart', {replace: true}) : ""}
                     {cartQuantity > 0 && (
                     <div>
                         <hr className="divide-solid mt-3"></hr>

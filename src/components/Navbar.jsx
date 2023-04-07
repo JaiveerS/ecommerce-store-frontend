@@ -50,7 +50,7 @@ export default function Navbar() {
                 </h1>
                 <ul className="flex">
                     {jwt === null || jwt === "" ? <li className="px-2 text-lg"><Link to={"/login"}>Login</Link></li>: name}
-                    <li className="px-2 text-lg"><Link className="flex" to={"/cart"}><CgShoppingCart size={30}/> {cartQuantity}</Link></li>
+                    <li className="px-2 text-lg hover:animate-pulse"><Link className="flex" to={"/cart"}><CgShoppingCart size={30}/> {cartQuantity}</Link></li>
                 </ul>
             </div>
         </nav>
