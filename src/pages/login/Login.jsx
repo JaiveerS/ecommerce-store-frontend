@@ -10,7 +10,7 @@ export default function Login() {
 
     const {authEndpoint, jwt, setJwt} = useContext(ShopContext);
     const [response, setResponse] = useState("");
-    const [loginStatus, setLoginStatus] = useState("Not Logged In");
+    // const [loginStatus, setLoginStatus] = useState("Not Logged In");
     const [error, setError] = useState("");
 
 
@@ -32,10 +32,9 @@ export default function Login() {
         response.status === 200 ? setJwt(response.data.token): setJwt("");
         console.log(jwt);
         if(jwt !== ""){
-            setLoginStatus("Logged In");
+            // setLoginStatus("Logged In");
             setError("");
             navigate('/', {replace: true});
-
         }
     }, [response, jwt]);
 
@@ -54,7 +53,7 @@ export default function Login() {
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                         Sign in to your account
                     </h1>
-                    {error}
+                    <p className="text-red-600 font-bold">{error}</p>
                     <form className="space-y-4 md:space-y-6" action="#">
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
@@ -76,7 +75,7 @@ export default function Login() {
                             {/* <a href="#" class="text-sm font-medium text-primary-600 hover:underline ">Forgot password?</a> */}
                         </div>
                         <button type="submit" onClick={(e)=> handleLogin(e)} className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border-l-black bg-black hover:bg-slate-600 hover:text-gray-100">Sign in</button>
-                        {loginStatus}
+                        {/* {loginStatus} */}
                             {/* <a href="#" class="text-sm font-medium text-primary-600 hover:underline ">Forgot password?</a> */}
                         <p className="text-sm font-light text-gray-700 hover:underline">
                             Don’t have an account yet? <Link to={"/signup"} className="font-medium tex2 ">Sign up</Link>

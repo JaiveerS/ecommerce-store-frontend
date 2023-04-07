@@ -13,7 +13,7 @@ export default function Product(props){
     return(
         <div className="bg-white w-80">
             <Link to={'/product/' + id}>
-                <img className="object-contain h-80 w-72" alt={description} src={image}/>
+                <img className="object-fit h-80" alt={description} src={image}/>
             </Link>
                 <h1 className="text-center py-2">{productName}</h1>
                 <h3 className="text-center">Price: ${price}</h3>

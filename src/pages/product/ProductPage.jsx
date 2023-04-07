@@ -28,7 +28,7 @@ export default function ProductPage(props) {
         <div>
         {product.price > 0 && (
         <div className="flex min-h-screen justify-center flex-wrap">
-            <img className="object-contain h-96 w-80 mt-5" alt={product.description} src={product.image}/>
+            <img className="object-fit h-96 mt-5" alt={product.description} src={product.image}/>
                 <div className="px-10">
                     <h1 className="pt-10 pb-5">{product.productName}</h1>
                     <h3 className="py-2">Price: ${product.price}</h3>
