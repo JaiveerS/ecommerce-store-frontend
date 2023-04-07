@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {Link} from 'react-router-dom';
 import { ShopContext } from "../context/ShopContext";
 import { CgShoppingCart } from "react-icons/cg";
@@ -7,8 +7,9 @@ import axios from "axios";
 
 export default function Navbar() {
 
-    const {cartQuantity, endpoint, jwt} = useContext(ShopContext)
+    const {cartQuantity, authEndpoint, endpoint, jwt} = useContext(ShopContext)
     const {product, setProduct,cartItems, setCartItems, getDefaultCart} = useContext(ShopContext)    
+    const [name, setName] = useState("");
 
     function getProducts (){
         axios.get(endpoint).then((response)=> {
@@ -16,12 +17,30 @@ export default function Navbar() {
         })
     }
 
+    function getName(){
+        const instance = axios.create({
+            baseURL: authEndpoint,
+            timeout: 1000,
+            headers: {'Authorization': 'Bearer '+jwt}
+          });
+          
+          instance.get('/token')
+          .then(response => {
+              setName(response.data)
+          })
+    }
+
     useEffect(() => {
         getProducts();
-        if (cartItems.size !== product.length){
+        if(jwt !== null && jwt !== "" && name === ""){
+            getName();
+        }
+            if (cartItems.size !== product.length){
             setCartItems(getDefaultCart(product))
         }
     })
+
+
 
     return(
         <nav className="bg-slate-400 top-0 z-50 flex flex-wrap items-center justify-between px-2 py-3">
@@ -30,7 +49,7 @@ export default function Navbar() {
                     <Link to={"/"}>TheTrove</Link>
                 </h1>
                 <ul className="flex">
-                    {jwt === null || jwt === "" ? <li className="px-2 text-lg"><Link to={"/login"}>Login</Link></li>: "username here"}
+                    {jwt === null || jwt === "" ? <li className="px-2 text-lg"><Link to={"/login"}>Login</Link></li>: name}
                     <li className="px-2 text-lg"><Link className="flex" to={"/cart"}><CgShoppingCart size={30}/> {cartQuantity}</Link></li>
                 </ul>
             </div>

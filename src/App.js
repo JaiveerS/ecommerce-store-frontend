@@ -8,6 +8,7 @@ import Cart from "./pages/cart/Cart";
 import Signup from "./pages/signup/Signup";
 import ProductPage from "./pages/product/ProductPage";
 import NotFound from "./pages/404/NotFound";
+import Checkout from "./pages/checkout/Checkout";
 // import APIService from "./APIService";
 
 
@@ -22,6 +23,7 @@ function App() {
             <Route exact path="/cart" element={<Cart />}/>
             {/* <Route exact path="/axios" element={<APIService />}/>           */}
             <Route exact path="/signup" element={<Signup />}/>
+            <Route exact path="/checkout" element={<Checkout/>}/>
             <Route path="/product/*" element={<ProductPage />}/>
             <Route path='*' element={<NotFound />}/>
           </Routes>
