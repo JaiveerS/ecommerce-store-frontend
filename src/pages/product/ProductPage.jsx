@@ -20,12 +20,9 @@ export default function ProductPage(props) {
         })
     }
 
-    useEffect(() => {
-        getProducts();
-    })
-
     return (
         <div>
+        {product.length === 0 ? getProducts() : ""}
         {product.price > 0 && (
         <div className="flex min-h-screen justify-center flex-wrap">
             <img className="object-fit h-96 mt-5" alt={product.description} src={product.image}/>

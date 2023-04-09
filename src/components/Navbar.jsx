@@ -7,15 +7,10 @@ import axios from "axios";
 
 export default function Navbar() {
 
-    const {cartQuantity, authEndpoint, endpoint, jwt} = useContext(ShopContext)
-    const {product, setProduct,cartItems, setCartItems, getDefaultCart} = useContext(ShopContext)    
+    const {cartQuantity, authEndpoint, jwt} = useContext(ShopContext)
+    const {product,cartItems, setCartItems, getDefaultCart} = useContext(ShopContext)    
     const [name, setName] = useState("");
 
-    function getProducts (){
-        axios.get(endpoint).then((response)=> {
-            setProduct(response.data._embedded.productList)
-        })
-    }
 
     function getName(){
         const instance = axios.create({
@@ -31,11 +26,10 @@ export default function Navbar() {
     }
 
     useEffect(() => {
-        getProducts();
         if(jwt !== null && jwt !== "" && name === ""){
             getName();
         }
-            if (cartItems.size !== product.length){
+        if (cartItems.size !== product.length){
             setCartItems(getDefaultCart(product))
         }
     })
