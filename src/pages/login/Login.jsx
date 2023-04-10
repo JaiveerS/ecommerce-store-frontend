@@ -36,7 +36,7 @@ export default function Login() {
             setError("");
             navigate('/', {replace: true});
         }
-    }, [response, jwt]);
+    }, [response, jwt, navigate, setJwt]);
 
     function handleChangeEmail(event){
         setEmail(event.target.value);

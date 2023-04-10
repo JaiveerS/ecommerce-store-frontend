@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../context/ShopContext";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 // import {Link} from 'react-router-dom';
 
@@ -13,7 +13,7 @@ export default function Signup() {
 
     const {authEndpoint, jwt, setJwt} = useContext(ShopContext);
     const [response, setResponse] = useState("");
-    const [loginStatus, setLoginStatus] = useState("Not Logged In");
+    // const [loginStatus, setLoginStatus] = useState("Not Logged In");
     const [error, setError] = useState("");
     const [check, setCheck] = useState("");
 
@@ -36,12 +36,12 @@ export default function Signup() {
         response.status === 200 ? setJwt(response.data.token): setJwt("");
         console.log(jwt);
         if(jwt !== ""){
-            setLoginStatus("Logged In");
+            // setLoginStatus("Logged In");
             setError("");
             navigate('/', {replace: true});
 
         }
-    }, [response, jwt]);
+    },[jwt, navigate, response.data , response.status, setJwt]);
 
     function handleChangeFirstname(event){
         setFirstname(event.target.value);
@@ -107,7 +107,7 @@ export default function Signup() {
                             </div>
                         </div>
                         <button type="submit" onClick={(e)=> handleLogin(e)} className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border-l-black bg-black hover:bg-slate-600 hover:text-gray-100">Sign up</button>
-                        {loginStatus}
+                        {/* {loginStatus} */}
                     </form>
                 </div>
             </div>
