@@ -23,9 +23,15 @@ export default function Cart() {
     return (
         <div className="bg-white flex justify-center items-center">
         <div className="min-h-screen">
-            <div>
+            <div className="flex flex-col">
                 <h1 className="text-3xl font-bold mb-2 pt-10 text-center">{cartQuantity  > 0 ? 'Shoping Cart' : 'Your Cart is empty.'}</h1>
-                <Link className="hover:underline hover:font-bold text-center" to={"/"}>{cartQuantity  === 0 && ('start shopping')}</Link>
+                {cartQuantity === 0 ? 
+                    <button onClick={() => navigate("/", {replace:true})} class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded self-center">
+                        Start Shopping
+                    </button>
+                    : ""
+                }
+                {/* <Link className="hover:underline hover:font-bold text-center" to={"/"}>{cartQuantity  === 0 && ('start shopping')}</Link> */}
             </div>
             <div>
                 {product.map((product) => {
