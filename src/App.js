@@ -9,7 +9,6 @@ import Signup from "./pages/signup/Signup";
 import ProductPage from "./pages/product/ProductPage";
 import NotFound from "./pages/404/NotFound";
 import Checkout from "./pages/checkout/Checkout";
-// import APIService from "./APIService";
 
 
 function App() {
