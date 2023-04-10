@@ -73,7 +73,7 @@ export default function Signup() {
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                         Register your account
                     </h1>
-                    {error}
+                    <p className="text-red-600 font-bold">{error}</p>
                     <form className="space-y-4 md:space-y-6" action="#">
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-900">Email</label>

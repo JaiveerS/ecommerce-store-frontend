@@ -9,6 +9,7 @@ import Signup from "./pages/signup/Signup";
 import ProductPage from "./pages/product/ProductPage";
 import NotFound from "./pages/404/NotFound";
 import Checkout from "./pages/checkout/Checkout";
+import OrderPlaced from "./pages/orderPlaced/OrderPlaced";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route exact path="/signup" element={<Signup />}/>
             <Route exact path="/checkout" element={<Checkout/>}/>
             <Route path="/product/*" element={<ProductPage />}/>
+            <Route path="/success" element={<OrderPlaced/>}/>
             <Route path='*' element={<NotFound />}/>
           </Routes>
         </Router>

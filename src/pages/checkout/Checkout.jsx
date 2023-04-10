@@ -149,7 +149,7 @@ export default function Checkout(){
                             <button onClick={handleOnClick} className="float-right px-6 mr-3 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-green-600 hover:text-white border-2 border-gray-900 focus:outline-none">Place Your Order</button>
                             {response.status === 200 ? (navigate('/success', {replace: true})) : ""}
                         </div>)}
-                        <p className="text-red-700 font-semibold">{error}</p>
+                        <p className="text-red-600 font-bold">{error}</p>
                     </div>
                 </div>
             </form>
