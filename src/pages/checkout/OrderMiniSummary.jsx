@@ -16,7 +16,7 @@ export default function OrderMiniSummary(props){
                 <p className="text-sm">Price: ${price}</p>
                 <p className="text-sm">Quantity: {count}</p>
                 <div>
-                    <button className="pb-2 justify-start lowercase hover:text-red-700 hover:underline focus:outline-none text-sm" onClick={() => removeFromCart(id)}>Remove</button>
+                    <div className="pb-2 justify-start lowercase hover:text-red-700 hover:underline focus:outline-none text-sm cursor-pointer" onClick={() => removeFromCart(id)}>Remove</div>
                 </div>
             </div>
         </div>
