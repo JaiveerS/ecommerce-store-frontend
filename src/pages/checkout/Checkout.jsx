@@ -50,20 +50,8 @@ export default function Checkout(){
         console.log(event.target.value)
     }
 
+    //TODO get userID when we log in then save in context to send here.
     const body = {userId: 1 ,fullName: fullname, phoneNumber: phonenumber, address: address , city: city, province:province, postalCode: postalCode, orderItems: cartProducts}
-        // [{
-    //     "productId":1,
-    //     "productName": "Pixel 6a",
-    //     "price": 399.00,
-    //     "quantity":5
-    // },{
-    //     "productId":2,
-    //     "productName": "iPhone 14 Pro Max",
-    //     "price": 1549.00,
-    //     "quantity":2
-    // }
-// ]};
-
 
     function handleOnClick(event){
         event.preventDefault()
