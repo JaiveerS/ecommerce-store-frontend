@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../context/ShopContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import FormInput from "../../components/FormInput";
 
 
-export default function Signup() {
+export default function Register() {
     const [values, setValues] = useState(
         {
             firstname: "",
@@ -117,6 +117,9 @@ export default function Signup() {
                             <FormInput key={input.id} {...input} value={values[input.name]} onChange={handleChange}/>
                         ))}
                         <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border-l-black bg-black hover:bg-slate-600 hover:text-gray-100">Sign up</button>
+                        <p className="text-sm font-light text-gray-700 hover:underline">
+                            Already have an account? <Link to={"/login"} className="font-medium tex2 ">Login</Link>
+                        </p>
                     </form>
                 </div>
             </div>
