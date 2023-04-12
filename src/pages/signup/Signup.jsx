@@ -44,7 +44,7 @@ export default function Signup() {
             placeholder: "Email",
             title: "Email must be a valid email address",
             label: "Email",
-            pattern: "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}$",
+            pattern: "^[^@]+@[^@]+.[^@]+$",
             required: true
         },
         {
