@@ -7,7 +7,7 @@ import axios from "axios";
 
 export default function Navbar() {
 
-    const {setId, cartQuantity, authEndpoint, jwt} = useContext(ShopContext)
+    const {setId,setJwt, cartQuantity, authEndpoint, jwt} = useContext(ShopContext)
     const {product,cartItems, setCartItems, getDefaultCart} = useContext(ShopContext)    
     const [name, setName] = useState("");
 
@@ -36,6 +36,10 @@ export default function Navbar() {
         }
     })
 
+    function signOut(){
+        setJwt("")
+    }
+
 
 
     return(
@@ -45,7 +49,19 @@ export default function Navbar() {
                     <Link to={"/"}>shop</Link>
                 </h1>
                 <ul className="flex">
-                    {jwt === null || jwt === "" ? <li className="px-2 text-lg"><Link to={"/login"}>Login</Link></li>: name}
+                    {jwt === null || jwt === "" ? 
+                        <li className="px-2 text-lg cursor-pointer"><Link to={"/login"}>Login</Link></li>
+                            :
+                        <div>
+                            <li className="peer px-2 text-lg cursor-pointer">{name}</li>
+                            <div class="hidden peer-hover:flex hover:flex
+                            flex-col bg-white drop-shadow-lg">
+                                {/* <ul class="px-2 py-2 hover:bg-gray-400 cursor-pointer" >Orders</ul> */}
+                                <ul class="absolute px-2 py-2 hover:bg-gray-400 cursor-pointer" onClick={signOut}>Log Out</ul>
+                            </div>
+                            </div>
+                    }
+
                     <li className="px-2 text-lg hover:animate-pulse"><Link className="flex" to={"/cart"}><CgShoppingCart size={30}/> {cartQuantity}</Link></li>
                 </ul>
             </div>
