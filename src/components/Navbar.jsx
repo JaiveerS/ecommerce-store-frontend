@@ -7,7 +7,7 @@ import axios from "axios";
 
 export default function Navbar() {
 
-    const {cartQuantity, authEndpoint, jwt} = useContext(ShopContext)
+    const {setId, cartQuantity, authEndpoint, jwt} = useContext(ShopContext)
     const {product,cartItems, setCartItems, getDefaultCart} = useContext(ShopContext)    
     const [name, setName] = useState("");
 
@@ -21,7 +21,9 @@ export default function Navbar() {
           
           instance.get('/token')
           .then(response => {
-              setName(response.data)
+              setName(response.data.firstname);
+              setId(response.data.id);
+              console.log(response.data);
           })
     }
 

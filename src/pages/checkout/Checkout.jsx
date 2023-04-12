@@ -6,7 +6,7 @@ import axios from "axios";
 
 
 export default function Checkout(){
-    const {cartItems, product, cartQuantity, jwt, orderEndpoint} = useContext(ShopContext);
+    const {id, cartItems, product, cartQuantity, jwt, orderEndpoint} = useContext(ShopContext);
     const cartProducts = [];
     const [response, setResponse] = useState("");
     const [error, setError] = useState("");
@@ -51,7 +51,7 @@ export default function Checkout(){
     }
 
     //TODO get userID when we log in then save in context to send here.
-    const body = {userId: 1 ,fullName: fullname, phoneNumber: phonenumber, address: address , city: city, province:province, postalCode: postalCode, orderItems: cartProducts}
+    const body = {userId: id ,fullName: fullname, phoneNumber: phonenumber, address: address , city: city, province:province, postalCode: postalCode, orderItems: cartProducts}
 
     function handleOnClick(event){
         event.preventDefault()
