@@ -7,6 +7,7 @@ import axios from "axios";
 
 export default function Checkout(){
     const {cartItems, product, cartQuantity, jwt, orderEndpoint} = useContext(ShopContext);
+    const cartProducts = [];
     const [response, setResponse] = useState("");
     const [error, setError] = useState("");
     var total = 0;
@@ -49,7 +50,19 @@ export default function Checkout(){
         console.log(event.target.value)
     }
 
-    const body = {userId: 1 ,fullName: fullname, phoneNumber: phonenumber, address: address , city: city, province:province, postalCode: postalCode, orderItems: cartItems};
+    const body = {userId: 1 ,fullName: fullname, phoneNumber: phonenumber, address: address , city: city, province:province, postalCode: postalCode, orderItems: cartProducts}
+        // [{
+    //     "productId":1,
+    //     "productName": "Pixel 6a",
+    //     "price": 399.00,
+    //     "quantity":5
+    // },{
+    //     "productId":2,
+    //     "productName": "iPhone 14 Pro Max",
+    //     "price": 1549.00,
+    //     "quantity":2
+    // }
+// ]};
 
 
     function handleOnClick(event){
@@ -135,6 +148,7 @@ export default function Checkout(){
                         {product.map((product) => {
                                 if(cartItems.get(product.id) !== 0){
                                     total += cartItems.get(product.id) * product.price;
+                                    cartProducts.push({productId: product.id, productName: product.productName, price: product.price, quantity: cartItems.get(product.id)});
                                     return <OrderMiniSummary key={product.id} data={product} extra={cartItems.get(product.id)}/>
                                 }
                                 return ""
