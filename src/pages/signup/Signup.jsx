@@ -2,68 +2,106 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import {Link} from 'react-router-dom';
+import FormInput from "../../components/FormInput";
 
 
 export default function Signup() {
-    const [firstname, setFirstname] = useState("");
-    const [lastname, setLastname] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [values, setValues] = useState(
+        {
+            firstname: "",
+            lastname: "", 
+            email: "", 
+            password: "",
+            confirmPassword: "", 
+        })
+
+    const input = 
+    [
+        {
+            id:1,
+            name: "firstname",
+            type: "text",
+            placeholder: "Firstname",
+            title: "Firstname must be atleast 3-12 characters long and shouldn't include special characters",
+            label: "Firstname",
+            pattern: "^[A-Za-z0-9]{3,12}$",
+            required: true
+        },
+        {
+            id:2,
+            name: "lastname",
+            type: "text",
+            placeholder: "Lastname",
+            title: "Lastname must be atleast 3 characters long",
+            label: "Lastname",
+            pattern: "^[A-Za-z0-9]{3,12}$",
+            required: true
+        },
+        {
+            id:3,
+            name: "email",
+            type: "text",
+            placeholder: "Email",
+            title: "Email must be a valid email address",
+            label: "Email",
+            pattern: "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}$",
+            required: true
+        },
+        {
+            id:4,
+            name: "password",
+            type: "password",
+            placeholder: "Password",
+            title: "Must be atleast 6 characters long",
+            label: "Password",
+            pattern: ".{6,}",
+            required: true
+        },
+        {
+            id:5,
+            name: "confirmPassword",
+            type: "password",
+            placeholder: "Confirm Password",
+            title: "Passwords don't match",
+            label: "Confirm Password",
+            pattern: values.password,
+            required: true
+        },
+    ]
 
     const {authEndpoint, jwt, setJwt} = useContext(ShopContext);
     const [response, setResponse] = useState("");
-    // const [loginStatus, setLoginStatus] = useState("Not Logged In");
     const [error, setError] = useState("");
-    const [check, setCheck] = useState("");
 
 
-    const body = {firstname:firstname, lastname: lastname, email: email , password: password};
-    const navigate = useNavigate();
+    const body = {firstname: values.firstname, lastname: values.lastname, email: values.email , password: values.password};
+    const navigate = useNavigate()
 
-    function handleLogin(event){
-        event.preventDefault();
+    function handleSubmit(e){
+        e.preventDefault();
+
         console.log("your trying to log in");
-        console.log("email: " + email);
-        console.log("password: " + password);
+        console.log("email: " + values.email);
+        console.log("password: " + values.password);
         console.log(authEndpoint);
-
         axios.post(authEndpoint + "/register", body)
         .then(response => setResponse(response)).catch(error => setError("Cannot Register Account"));
     }
 
+    const handleChange = (e) => 
+    {
+        setValues({...values, [e.target.name]: e.target.value});
+    };
+
     useEffect(() => {
         response.status === 200 ? setJwt(response.data.token): setJwt("");
-        console.log(jwt);
+        // console.log(body)
         if(jwt !== ""){
-            // setLoginStatus("Logged In");
             setError("");
             navigate('/', {replace: true});
 
         }
-    },[jwt, navigate, response.data , response.status, setJwt]);
-
-    function handleChangeFirstname(event){
-        setFirstname(event.target.value);
-    }
-
-    function handleChangeLastname(event){
-        setLastname(event.target.value);
-    }
-
-    function handleChangeEmail(event){
-        setEmail(event.target.value);
-    }
-    function handleChangePassword(event){
-        setPassword(event.target.value);
-    }
-    function handleChangeConfirmPassword(event){
-        if(event.target.value !== password){
-            setCheck("Passwords Dont Match");
-        }else{
-            setCheck("");
-        }
-    }
+    },[jwt, navigate, response.data , response.status, setJwt, values]);
 
     return (
         <section>
@@ -74,40 +112,11 @@ export default function Signup() {
                         Register your account
                     </h1>
                     <p className="text-red-600 font-bold">{error}</p>
-                    <form className="space-y-4 md:space-y-6" action="#">
-                        <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                            <input onChange={handleChangeEmail} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="name@company.com" required=""/>
-                        </div>
-                        <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900">First Name</label>
-                            <input onChange={handleChangeFirstname} type="name" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="firstname" required=""/>
-                        </div>
-                        <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900">Last Name</label>
-                            <input onChange={handleChangeLastname} type="name" name="ename" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="lastname" required=""/>
-                        </div>
-                        <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-                            <input onChange={handleChangePassword} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " required=""/>
-                        </div>
-                        <div>
-                            {check}
-                            <label className="block mb-2 text-sm font-medium text-gray-900}">Confirm Password</label>
-                            <input onChange={handleChangeConfirmPassword} type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " required=""/>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-start">
-                                {/* <div className="flex items-center h-5">
-                                    <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 " required=""/>
-                                </div> */}
-                                {/* <div className="ml-3 text-sm">
-                                    <label  className="text-gray-900 ">Remember me</label>
-                                </div> */}
-                            </div>
-                        </div>
-                        <button type="submit" onClick={(e)=> handleLogin(e)} className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border-l-black bg-black hover:bg-slate-600 hover:text-gray-100">Sign up</button>
-                        {/* {loginStatus} */}
+                    <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+                        {input.map((input) => (
+                            <FormInput key={input.id} {...input} value={values[input.name]} onChange={handleChange}/>
+                        ))}
+                        <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border-l-black bg-black hover:bg-slate-600 hover:text-gray-100">Sign up</button>
                     </form>
                 </div>
             </div>
