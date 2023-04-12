@@ -3,9 +3,84 @@ import { ShopContext } from "../../context/ShopContext";
 import OrderMiniSummary from "./OrderMiniSummary";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import FormInput from "../../components/FormInput";
 
 
 export default function Checkout(){
+        const [values, setValues] = useState(
+        {
+            fullName: "",
+            phoneNumber: "", 
+            address: "", 
+            city: "",
+            province: "", 
+            postalCode: ""
+        })
+
+    const input = 
+    [
+        {
+            id:1,
+            name: "fullName",
+            type: "text",
+            placeholder: "Fullname",
+            title: "Fullname must be atleast 3-12 characters long and shouldn't include special characters",
+            label: "Fullname",
+            pattern: "^[A-Za-z0-9]{3,12}$",
+            required: true
+        },
+        {
+            id:2,
+            name: "phoneNumber",
+            type: "text",
+            placeholder: "Phone Number",
+            title: "Phone Number must be atleast 3 characters long",
+            label: "Phone Number",
+            pattern: "^[0-9]{3,12}$",
+            required: true
+        },
+        {
+            id:3,
+            name: "address",
+            type: "text",
+            placeholder: "address",
+            title: "address must be a valid address address",
+            label: "address",
+            pattern: "^[A-Za-z0-9]{3,12}$",
+            required: true
+        },
+        {
+            id:4,
+            name: "city",
+            type: "city",
+            placeholder: "city",
+            title: "Must be atleast 6 characters long",
+            label: "city",
+            pattern: "^[A-Za-z0-9]{3,12}$",
+            required: true
+        },
+        {
+            id:5,
+            name: "province",
+            type: "province",
+            placeholder: "province",
+            title: "province must be atleast 3 characters long",
+            label: "province",
+            pattern: "^[A-Za-z0-9]{3,12}$",
+            required: true
+        },
+        {
+            id:6,
+            name: "postalCode",
+            type: "postalcode",
+            placeholder: "postalcode",
+            title: "postalcode must be atleast 3 characters long",
+            label: "postalcode",
+            pattern: "^[A-Za-z0-9]{3,12}$",
+            required: true
+        }
+    ]
+
     const {id, cartItems, product, cartQuantity, jwt, orderEndpoint} = useContext(ShopContext);
     const cartProducts = [];
     const [response, setResponse] = useState("");
@@ -13,47 +88,9 @@ export default function Checkout(){
     var total = 0;
     const navigate = useNavigate();
 
-    const [fullname, setFullname] = useState("");
-    const [phonenumber, setPhonenumber] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
-    const [province, setProvince] = useState("");
-    const [postalCode, setPostalCode] = useState("");
+    const body = {userId: id ,fullName: values.fullName, phoneNumber: values.phoneNumber, address: values.address , city: values.city, province: values.province, postalCode: values.postalCode, orderItems: cartProducts}
 
-    function handleChangeFullname(event){
-        setFullname(event.target.value)
-        console.log(event.target.value)
-    }
-
-    function handleChangePhonenumber(event){
-        setPhonenumber(event.target.value)
-        console.log(event.target.value)
-    }
-
-    function handleChangeAddress(event){
-        setAddress(event.target.value)
-        console.log(event.target.value)
-    }
-
-    function handleChangeCity(event){
-        setCity(event.target.value)
-        console.log(event.target.value)
-    }
-
-    function handleChangeProvince(event){
-        setProvince(event.target.value)
-        console.log(event.target.value)
-    }
-
-    function handleChangePostalCode(event){
-        setPostalCode(event.target.value)
-        console.log(event.target.value)
-    }
-
-    //TODO get userID when we log in then save in context to send here.
-    const body = {userId: id ,fullName: fullname, phoneNumber: phonenumber, address: address , city: city, province:province, postalCode: postalCode, orderItems: cartProducts}
-
-    function handleOnClick(event){
+    function handleSubmit(event){
         event.preventDefault()
         if(jwt !== null && jwt !== ""){
             const instance = axios.create({
@@ -70,40 +107,23 @@ export default function Checkout(){
         }
     }
 
+    const handleChange = (e) => 
+    {
+        setValues({...values, [e.target.name]: e.target.value});
+    };
+
     return (
         <div className="flex pt-5 min-h-screen">
-            <form className="space-y-4 md:space-y-6 pl-2 pr-2 mx-auto" action="#">
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 pl-2 pr-2 mx-auto" action="#">
                 <div className="flex pl-2">
                     <div>
                         <div className="max-w-md">
                             <h1 className="font-semibold">Shipping Address </h1>
-                            <div className="pt-2">
-                                <label className="block mb-2 text-sm font-medium text-gray-900">Full Name</label>
-                                <input onChange={handleChangeFullname} type="name" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="Full name" required/>
-                            </div>
-                            <div className="pt-2">
-                                <label className="block mb-2 text-sm font-medium text-gray-900">Phone #</label>
-                                <input onChange={handleChangePhonenumber} type="phone" name="phonenumber" id="phonenumber" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="***-***-****" required/>
-                            </div>
-                            <div className="pt-2">
-                                <label className="block mb-2 text-sm font-medium text-gray-900">Address</label>
-                                <input onChange={handleChangeAddress} type="name" name="address" id="address" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="Address" required/>
-                            </div>
-                            <div className="pt-2">
-                                <label className="block mb-2 text-sm font-medium text-gray-900">City</label>
-                                <input onChange={handleChangeCity} type="text" name="city" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="City" required/>
-                            </div >
-                            <div className="flex pt-2">
-                                <div className="flex flex-col justify-between pr-2">
-                                    <label className="block mb-2 text-sm font-medium text-gray-900">Province</label>
-                                    <input onChange={handleChangeProvince} type="text" name="province" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="Province" required/>
-                                </div>
-                                <div className="flex flex-col justify-between">
-                                    <label className="block mb-2 text-sm font-medium text-gray-900">Postal Code</label>
-                                    <input onChange={handleChangePostalCode} type="text" name="postal" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="Postal Code" required/>
-                                </div>
-                            </div>
-                        </div>
+
+                            {input.map((input) => (
+                                <FormInput key={input.id} {...input} value={values[input.name]} onChange={handleChange}/>
+                            ))}
+                        </div> 
 
 
                         <div className="max-w-md">
@@ -148,7 +168,7 @@ export default function Checkout(){
                         <div>
                             <hr className="divide-solid mt-3"></hr>
                             <h3 className="text-xl font-bold mr-4 mb-4 pt-5 text-right" value="true">Total = ${total}</h3>
-                            <button onClick={handleOnClick} className="float-right px-6 mr-3 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-green-600 hover:text-white border-2 border-gray-900 focus:outline-none">Place Your Order</button>
+                            <button type="submit" className="float-right px-6 mr-3 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-green-600 hover:text-white border-2 border-gray-900 focus:outline-none">Place Your Order</button>
                             {response.status === 200 ? (navigate('/success', {replace: true})) : ""}
                         </div>)}
                         <p className="text-red-600 font-bold">{error}</p>
