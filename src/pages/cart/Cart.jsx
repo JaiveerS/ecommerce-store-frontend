@@ -33,7 +33,7 @@ export default function Cart() {
                 }
                 {/* <Link className="hover:underline hover:font-bold text-center" to={"/"}>{cartQuantity  === 0 && ('start shopping')}</Link> */}
             </div>
-            <div className="lg:space-y-0 sm:space-y-7">
+            <div className="lg:space-y-0">
                 {product.map((product) => {
                         if(cartItems.get(product.id) !== 0){
                             total += cartItems.get(product.id) * product.price;
@@ -45,7 +45,6 @@ export default function Cart() {
                 }
                 {cartQuantity > 0 && (
                 <div>
-                    <hr className="divide-solid mt-3"></hr>
                     <h3 className="text-3xl font-bold mr-4 mb-6 pt-10 text-right" value="true">Total = ${total}</h3>
                     <button onClick={handleOnClick} className="float-right px-6 mr-3 py-2 mb-5 transition ease-in duration-200 uppercase rounded-full hover:bg-green-600 hover:text-white border-2 border-gray-900 focus:outline-none ">Checkout</button>
                 </div>)}
