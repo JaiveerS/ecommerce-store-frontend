@@ -29,11 +29,11 @@ export default function Cart() {
                     <button onClick={() => navigate("/", {replace:true})} className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded self-center">
                         Start Shopping
                     </button>
-                    : ""
+                    : <hr className="divide-solid mt-3"></hr>
                 }
                 {/* <Link className="hover:underline hover:font-bold text-center" to={"/"}>{cartQuantity  === 0 && ('start shopping')}</Link> */}
             </div>
-            <div>
+            <div className="lg:space-y-0 sm:space-y-7">
                 {product.map((product) => {
                         if(cartItems.get(product.id) !== 0){
                             total += cartItems.get(product.id) * product.price;
