@@ -11,7 +11,7 @@ export default function CartItem(props){
 
     return(
         <div className="flex justify-center items-center px-4">
-            <Link to={'/product/' + id}><img className=" object-contain h-80 rounded-lg" alt={description} src={image}/></Link>
+            <Link to={'/product/' + id}><img className="object-cover max-h-64 rounded-lg" alt={description} src={image}/></Link>
             <div className="flex flex-col px-5">
                 <h1 className="text-center py-2 font-semibold">{productName}</h1>
                 <h3 className="text-center">Price: ${price}</h3>
