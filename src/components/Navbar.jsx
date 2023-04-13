@@ -43,7 +43,7 @@ export default function Navbar() {
 
 
     return(
-        <nav className="sticky bg-white top-0 z-50 flex flex-wrap items-center justify-between px-2 py-3">
+        <nav className="sticky bg-white top-0 z-50 flex flex-wrap items-center justify-between px-2 py-3 shadow">
             <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
                 <h1 className="px-2 text-5xl">
                     <Link to={"/"}>shop</Link>
