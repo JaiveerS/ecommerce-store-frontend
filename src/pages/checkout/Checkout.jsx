@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { ShopContext } from "../../context/ShopContext";
 import OrderMiniSummary from "./OrderMiniSummary";
 import { useNavigate } from "react-router-dom";
@@ -115,6 +115,15 @@ export default function Checkout(){
         setValues({...values, [e.target.name]: e.target.value});
     };
 
+    useEffect(() => {
+        if (response.status === 200){
+            navigate('/success', {replace: true})
+        }
+        if (cartQuantity === 0 || jwt === null || jwt === ""){
+            navigate('/cart', {replace: true})
+        }
+    })
+
     return (
         <div className="flex pt-5 min-h-screen">
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 pl-2 pr-2 mx-auto" action="#">
@@ -166,13 +175,13 @@ export default function Checkout(){
                             }
                         )
                         }
-                        {cartQuantity === 0 || jwt === null || jwt === "" ?  navigate('/cart', {replace: true}) : ""}
+                        {/* {cartQuantity === 0 || jwt === null || jwt === "" ?  navigate('/cart', {replace: true}) : ""} */}
                         {cartQuantity > 0 && (
                         <div>
                             <hr className="divide-solid mt-3"></hr>
                             <h3 className="text-xl font-bold mr-4 mb-4 pt-5 text-right" value="true">Total = ${total}</h3>
                             <button type="submit" className="float-right px-6 mr-3 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-green-600 hover:text-white border-2 border-gray-900 focus:outline-none">Place Your Order</button>
-                            {response.status === 200 ? (navigate('/success', {replace: true})) : ""}
+                            {/* {response.status === 200 ? (navigate('/success', {replace: true})) : ""} */}
                         </div>)}
                         <p className="text-red-600 font-bold">{error}</p>
                     </div>

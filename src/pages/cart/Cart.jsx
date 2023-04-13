@@ -26,7 +26,7 @@ export default function Cart() {
             <div className="flex flex-col">
                 <h1 className="text-3xl font-bold mb-2 pt-10 text-center">{cartQuantity  > 0 ? 'Shoping Cart' : 'Your Cart is empty.'}</h1>
                 {cartQuantity === 0 ? 
-                    <button onClick={() => navigate("/", {replace:true})} class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded self-center">
+                    <button onClick={() => navigate("/", {replace:true})} className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded self-center">
                         Start Shopping
                     </button>
                     : ""
