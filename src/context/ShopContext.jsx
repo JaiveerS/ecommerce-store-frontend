@@ -46,9 +46,14 @@ export default function ShopContextProvider(props){
         setCartQuantity((prev) => prev - amount);
     }
 
+    const removeAllFromCart = () =>{
+        setCartItems(getDefaultCart(product));
+        setCartQuantity(0);
+    }
+
     // console.log(cartItems.size)
     
-    const contextValue= {id, setId, jwt, setJwt, endpoint,authEndpoint,orderEndpoint, setCartItems,getDefaultCart, product,setProduct, cartQuantity,cartItems, addToCart, decreaseCountInCart, removeFromCart}
+    const contextValue= {removeAllFromCart, id, setId, jwt, setJwt, endpoint,authEndpoint,orderEndpoint, setCartItems,getDefaultCart, product,setProduct, cartQuantity,cartItems, addToCart, decreaseCountInCart, removeFromCart}
     
     return(
         <ShopContext.Provider value={contextValue}>

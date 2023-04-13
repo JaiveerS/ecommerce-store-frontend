@@ -81,7 +81,7 @@ export default function Checkout(){
         }
     ]
 
-    const {id, cartItems, product, cartQuantity, jwt, orderEndpoint} = useContext(ShopContext);
+    const {removeAllFromCart, id, cartItems, product, cartQuantity, jwt, orderEndpoint} = useContext(ShopContext);
     const cartProducts = [];
     const [response, setResponse] = useState("");
     const [error, setError] = useState("");
@@ -118,6 +118,8 @@ export default function Checkout(){
     useEffect(() => {
         if (response.status === 200){
             navigate('/success', {replace: true})
+            removeAllFromCart()
+
         }
         if (cartQuantity === 0 || jwt === null || jwt === ""){
             navigate('/cart', {replace: true})

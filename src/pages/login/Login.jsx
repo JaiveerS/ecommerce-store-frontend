@@ -19,9 +19,9 @@ export default function Login() {
 
     function handleLogin(event){
         event.preventDefault();
-        console.log("your trying to log in");
-        console.log("email: " + email);
-        console.log("password: " + password);
+        // console.log("your trying to log in");
+        // console.log("email: " + email);
+        // console.log("password: " + password);
         console.log(authEndpoint);
 
         axios.post(authEndpoint + "/login", body)
