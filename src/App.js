@@ -10,6 +10,7 @@ import NotFound from "./pages/404/NotFound";
 import Checkout from "./pages/checkout/Checkout";
 import OrderPlaced from "./pages/orderPlaced/OrderPlaced";
 import Register from "./pages/register/Register";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <ShopContextProvider>
         <Router>
           <Navbar />
+          <ScrollToTop/>
           <Routes>
             <Route exact path="/" element={<Home />}/>
             <Route exact path="/login" element={<Login />}/>
