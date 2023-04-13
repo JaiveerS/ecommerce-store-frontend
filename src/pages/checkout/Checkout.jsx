@@ -96,11 +96,14 @@ export default function Checkout(){
             const instance = axios.create({
                 baseURL: orderEndpoint,
                 timeout: 1000,
-                headers: {"Authorization": "Bearer " + jwt}
+                headers: {'Authorization': 'Bearer '+ jwt}
+
               });
 
             instance.post("/order", body)
             .then(response => setResponse(response)).catch(error => setError("Cannot Place Order"));
+            // .then(response => setResponse(response)).catch((error) => console.log(error));
+
 
         }else{
             navigate('/login', {replace: true});
