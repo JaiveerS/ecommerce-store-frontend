@@ -119,7 +119,7 @@ export default function Checkout(){
         if (response.status === 200){
             navigate('/success', {replace: true})
             removeAllFromCart()
-
+            
         }
         if (cartQuantity === 0 || jwt === null || jwt === ""){
             navigate('/cart', {replace: true})
@@ -128,7 +128,7 @@ export default function Checkout(){
 
     return (
         <div className="flex pt-5 min-h-screen">
-            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 pl-2 pr-2 mx-auto" action="#">
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6 pl-2 pr-2 mx-auto">
                 <div className="flex pl-2">
                     <div>
                         <div className="max-w-md">
