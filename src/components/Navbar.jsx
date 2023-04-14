@@ -55,9 +55,9 @@ export default function Navbar() {
                         <div>
                             <li className="peer px-2 text-lg cursor-pointer">{name}</li>
                             <div className="hidden peer-hover:flex hover:flex
-                            flex-col bg-white drop-shadow-lg">
+                            flex-col bg-white drop-shadow-lg cursor-pointer">
                                 {/* <ul class="px-2 py-2 hover:bg-gray-400 cursor-pointer" >Orders</ul> */}
-                                <ul className="absolute px-2 py-2 hover:bg-gray-400 cursor-pointer" onClick={signOut}>Log Out</ul>
+                                <ul className="bg-white absolute px-2 py-2 hover:bg-gray-400 cursor-pointer" onClick={signOut}>Log Out</ul>
                             </div>
                             </div>
                     }
