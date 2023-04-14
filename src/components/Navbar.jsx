@@ -11,7 +11,6 @@ export default function Navbar() {
     const {product,cartItems, setCartItems, getDefaultCart} = useContext(ShopContext)    
     const [name, setName] = useState("");
 
-
     function getName(){
         const instance = axios.create({
             baseURL: authEndpoint,
@@ -38,6 +37,7 @@ export default function Navbar() {
 
     function signOut(){
         setJwt("")
+        window.scrollTo(0,0);
     }
 
 
