@@ -26,7 +26,7 @@ function App() {
             <Route exact path="/signup" element={<Register />}/>
             <Route exact path="/checkout" element={<Checkout/>}/>
             <Route path="/product/*" element={<ProductPage />}/>
-            <Route path="/success" element={<OrderPlaced/>}/>
+            <Route path="/orders" element={<OrderPlaced/>}/>
             <Route path='*' element={<NotFound />}/>
           </Routes>
         </Router>

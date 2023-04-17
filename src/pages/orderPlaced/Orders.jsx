@@ -2,7 +2,7 @@
 export default function Orders(props){
     const item = props.data
     return (
-        <div className="px-10 py-5 flex flex-col">
+        <div className="px-10 py-5 flex flex-col min-w-full ">
             <table className="min-w-full text-left text-lg font-light">
                 <thead className="border-b font-medium dark:border-neutral-500">
                     <tr>

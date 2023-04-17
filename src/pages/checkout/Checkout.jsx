@@ -117,7 +117,7 @@ export default function Checkout(){
 
     useEffect(() => {
         if (response.status === 200){
-            navigate('/success', {replace: true})
+            navigate('/orders', {replace: true})
             removeAllFromCart()
 
         }
@@ -183,7 +183,7 @@ export default function Checkout(){
                             <hr className="divide-solid mt-3"></hr>
                             <h3 className="text-xl font-bold mr-4 mb-4 pt-5 text-right" value="true">Total = ${total}</h3>
                             <button type="submit" className="float-right px-6 mr-3 py-2 transition ease-in duration-200 uppercase rounded-full hover:bg-green-600 hover:text-white border-2 border-gray-900 focus:outline-none">Place Your Order</button>
-                            {/* {response.status === 200 ? (navigate('/success', {replace: true})) : ""} */}
+                            {/* {response.status === 200 ? (navigate('/orders', {replace: true})) : ""} */}
                         </div>)}
                         <p className="text-red-600 font-bold">{error}</p>
                     </div>

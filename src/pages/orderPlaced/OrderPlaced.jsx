@@ -19,7 +19,7 @@ export default function OrderPlaced(){
         .then(response => setOrders(response.data));
     }
     return(
-        <div className="flex min-h-screen flex-col">
+        <div className="flex min-h-screen flex-col max-w-screen-lg m-auto">
             {/* <h1 className="text-center text-8xl py-10">ORDER PLACED</h1> */}
             {orders.length === 0 ? getOrders() : ""}
             {orders.map((item => (

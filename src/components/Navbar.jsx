@@ -44,7 +44,7 @@ export default function Navbar() {
     }
 
     function testClick(){
-        navigate('/success', {replace: true})
+        navigate('/orders', {replace: true})
     }
 
 
