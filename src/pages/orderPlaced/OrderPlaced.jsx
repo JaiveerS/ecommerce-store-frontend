@@ -24,7 +24,7 @@ export default function OrderPlaced(){
             {orders.length === 0 ? getOrders() : ""}
             {orders.map((item => (
                 <Orders data={item}/>
-            )))}
+            ))).reverse()}
         </div>
     )
 }

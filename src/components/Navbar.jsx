@@ -57,20 +57,19 @@ export default function Navbar() {
                 </h1>
                 <ul className="flex">
                     {jwt === null || jwt === "" ? 
-                        <li className="px-2 text-lg cursor-pointer"><Link to={"/login"}>Login</Link></li>
+                        <li className="px-2 py-2 text-lg cursor-pointer"><Link to={"/login"}>Login</Link></li>
                         :
                         <div>
-                            <div className="bg-white px-2 py-2 hover:bg-gray-400 cursor-pointer" onClick={testClick}>orders</div>
-                            <li className="peer px-2 text-lg cursor-pointer">{name}</li>
+                            <li className="peer px-2 py-2 text-lg cursor-pointer hover:bg-green-400 rounded-md">{name}</li>
                             <div className="hidden peer-hover:flex hover:flex
                             flex-col bg-white drop-shadow-lg cursor-pointer">
                                 {/* <ul class="px-2 py-2 hover:bg-gray-400 cursor-pointer" >Orders</ul> */}
-                                <ul className="bg-white absolute px-2 py-2 hover:bg-gray-400 cursor-pointer" onClick={signOut}>Log Out</ul>
+                                <ul className="bg-white absolute px-2 py-2 w-full text-center hover:bg-green-400 cursor-pointer rounded-md" onClick={testClick}>Orders</ul>
+                                <ul className="bg-white absolute mt-10 px-2 py-2 w-full text-center hover:bg-red-400 cursor-pointer rounded-md" onClick={signOut}>Log Out</ul>
                             </div>
                             </div>
                     }
-
-                    <li className="px-2 text-lg hover:animate-pulse"><Link className="flex" to={"/cart"}><CgShoppingCart size={30}/> {cartQuantity}</Link></li>
+                    <li className="px-2 py-2 text-lg"><Link className="flex" to={"/cart"}><CgShoppingCart size={30}/> {cartQuantity}</Link></li>
                 </ul>
             </div>
         </nav>
