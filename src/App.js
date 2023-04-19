@@ -11,6 +11,8 @@ import Checkout from "./pages/checkout/Checkout";
 import OrderPlaced from "./pages/orderPlaced/OrderPlaced";
 import Register from "./pages/register/Register";
 import ScrollToTop from "./components/ScrollToTop";
+import Profile from "./pages/profile/profile";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -27,8 +29,10 @@ function App() {
             <Route exact path="/checkout" element={<Checkout/>}/>
             <Route path="/product/*" element={<ProductPage />}/>
             <Route path="/orders" element={<OrderPlaced/>}/>
+            <Route path="/profile" element={<Profile />}/>
             <Route path='*' element={<NotFound />}/>
           </Routes>
+          <Footer/>
         </Router>
       </ShopContextProvider>
   );
