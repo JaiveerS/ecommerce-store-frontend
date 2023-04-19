@@ -2,7 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import {Link, useNavigate} from 'react-router-dom';
 import { ShopContext } from "../context/ShopContext";
 import { CgShoppingCart } from "react-icons/cg";
+import { FaRegUserCircle } from "react-icons/fa";
 import axios from "axios";
+import Hamburger from 'hamburger-react'
 
 
 export default function Navbar() {
@@ -47,30 +49,34 @@ export default function Navbar() {
         navigate('/orders', {replace: true})
     }
 
+    const [isOpen, setIsOpen] = useState(false);
+
 
 
     return(
-        <nav className="sticky bg-white top-0 z-50 flex flex-wrap items-center justify-between px-2 py-3 shadow">
-            <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-                <h1 className="px-2 text-5xl">
-                    <Link to={"/"}>shop</Link>
+        <nav className="sticky bg-white top-0 z-50 flex flex-wrap items-center justify-between py-3 shadow">
+            <div className="container mx-auto flex flex-wrap items-center justify-between">
+                <div className="pl-4 w-1/3">
+                    <Hamburger color="black" toggled={isOpen} toggle={setIsOpen}/>
+                </div>
+                <h1 className="flex justify-center items-center text-5xl w-1/3">
+                    <Link className=" px-2 py-2  font-semibold rounded-sm" to={"/"}>SHOP</Link>
                 </h1>
-                <ul className="flex">
-                    {jwt === null || jwt === "" ? 
-                        <li className="px-2 py-2 text-lg cursor-pointer"><Link to={"/login"}>Login</Link></li>
-                        :
-                        <div>
-                            <li className="peer px-2 py-2 text-lg cursor-pointer hover:bg-green-400 rounded-md">{name}</li>
-                            <div className="hidden peer-hover:flex hover:flex
-                            flex-col bg-white drop-shadow-lg cursor-pointer">
-                                {/* <ul class="px-2 py-2 hover:bg-gray-400 cursor-pointer" >Orders</ul> */}
-                                <ul className="bg-white absolute px-2 py-2 w-full text-center hover:bg-green-400 cursor-pointer rounded-md" onClick={testClick}>Orders</ul>
-                                <ul className="bg-white absolute mt-10 px-2 py-2 w-full text-center hover:bg-red-400 cursor-pointer rounded-md" onClick={signOut}>Log Out</ul>
-                            </div>
-                            </div>
-                    }
-                    <li className="px-2 py-2 text-lg"><Link className="flex" to={"/cart"}><CgShoppingCart size={30}/> {cartQuantity}</Link></li>
-                </ul>
+                    <ul className="flex justify-end w-1/3 pr-2">
+                        {jwt === null || jwt === "" ? 
+                            <li className="px-2 py-2 text-lg cursor-pointer hover:bg-gray-400 rounded-md"><Link className="flex flex-col " to={"/login"}><FaRegUserCircle className="block mx-auto" size={25}/><p className="text-sm">Login</p></Link></li>
+                            :
+                            <div>
+                                <li className="peer px-2 py-2 text-lg cursor-pointer hover:bg-gray-400 rounded-md"><Link className="flex flex-col" to={"/userinfo"}><FaRegUserCircle className="block mx-auto" size={25}/><p className="text-sm">{name}</p></Link></li>
+                                <div className="hidden peer-hover:flex hover:flex flex-col bg-white drop-shadow-lg cursor-pointer">
+                                    {/* <ul class="px-2 py-2 hover:bg-gray-400 cursor-pointer" >Orders</ul> */}
+                                    <ul className="bg-white absolute py-2 px-2 w-full text-center hover:bg-gray-400 cursor-pointer" onClick={testClick}>Orders</ul>
+                                    <ul className="bg-white absolute mt-10 py-2  px-2 w-full text-center hover:bg-red-300 cursor-pointer" onClick={signOut}>Log Out</ul>
+                                </div>
+                                </div>
+                        }
+                        <li className="py-2 pr-2 text-lg"><Link className="flex" to={"/cart"}><CgShoppingCart size={30}/> {cartQuantity}</Link></li>
+                    </ul>
             </div>
         </nav>
     )
