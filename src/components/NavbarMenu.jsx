@@ -1,17 +1,29 @@
+import axios from "axios";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import Hamburger from "hamburger-react"
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom"
+import { ShopContext } from "../context/ShopContext";
 
 export default function NavbarMenu(props) {
     const {isOpen, setIsOpen} = props;
+    const {categoriesEndpoint} = useContext(ShopContext);
+    const [categories, setCategories] = useState([]);
 
     function changeState(){
         setIsOpen(!isOpen);
     }
 
+    function getCategories(){
+        axios.get(categoriesEndpoint).then((response)=> {
+            console.log(response.data)
+            setCategories(response.data)
+        })
+    }
+
 
     isOpen ? disableBodyScroll(document) : enableBodyScroll(document);
-
+    
     return(
         <div className={isOpen ? "navbar-menu relative z-50 block" : "hidden"}>
         <div onClick={changeState} className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
@@ -20,12 +32,23 @@ export default function NavbarMenu(props) {
                 <Hamburger color="black" toggled={isOpen} toggle={setIsOpen}/>
             </div>
             <div>
+                {categories.length === 0 ? getCategories() : ""}
                 <ul>
                     <li className="mb-1">
                         <Link to={"/"} onClick={changeState} className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded">Home</Link>
                     </li>
                     <li className="mb-1">
                         <Link to={"/profile"} onClick={changeState} className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded">Profile</Link>
+                    </li>
+                    <li className="mb-1">
+                        <p className="block p-4 text-sm font-semibold text-gray-400 rounded">Categories</p>
+                            <div>
+                                {categories.map((item => (
+                                    <li className="block px-4">
+                                        <Link to={"/category/" + item} onClick={changeState} className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded">{item}</Link>
+                                    </li>
+                                )))}                        
+                            </div>
                     </li>
                     <li className="mb-1">
                         <Link to={"/cart"} onClick={changeState} className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded">Cart</Link>
