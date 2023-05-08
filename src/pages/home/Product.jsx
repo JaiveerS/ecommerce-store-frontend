@@ -11,8 +11,8 @@ export default function Product(props){
     const cartItemAmount = cartItems.get(id);
 
     return(
-        <div className="bg-white w-80">
-            <Link to={'/product/' + id}>
+        <div className="bg-white w-100">
+            <Link className="w-max" to={'/product/' + id}>
                 <img className="object-fit h-80" alt={description} src={image}/>
             </Link>
                 <h1 className="text-center py-2 font-semibold">{productName}</h1>

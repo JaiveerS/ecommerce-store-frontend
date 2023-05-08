@@ -25,6 +25,7 @@ export default function OrderPlaced(){
             {orders.map((item => (
                 <Orders data={item}/>
             ))).reverse()}
+            {orders.length === 0 && jwt !== "" ? <div className="p-20 font-extrabold text-5xl text-center">No Orders Placed</div> : ""}
         </div>
     )
 }

@@ -26,7 +26,7 @@ export default function Category() {
         <div>
             <div className="flex flex-col items-center min-h-screen">
             <h1 className="font-bold text-lg pt-4">{category}</h1>
-                <div className="flex space-between flex-wrap justify-center p-10">
+                <div className="flex space-between flex-wrap justify-center p-10 max-w-screen-2xl">
                 {product.map((item => (
                         <Product key={item.id} data={item}/>
                     )))}
