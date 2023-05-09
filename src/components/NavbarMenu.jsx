@@ -10,6 +10,7 @@ export default function NavbarMenu(props) {
     const {categoriesEndpoint, jwt, setJwt, setId} = useContext(ShopContext);
     const [categories, setCategories] = useState([]);
     const navigate = useNavigate();
+    const [isCategoryOpen, setCategoryOpen] = useState(true);
 
 
     function changeState(){
@@ -30,6 +31,10 @@ export default function NavbarMenu(props) {
         changeState()
     }
 
+    function changeCategoryStatus(){
+        setCategoryOpen(!isCategoryOpen)
+    }
+
 
     isOpen ? disableBodyScroll(document) : enableBodyScroll(document);
     
@@ -47,7 +52,8 @@ export default function NavbarMenu(props) {
                         <Link to={"/"} onClick={changeState} className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded">Home</Link>
                     </li>
                     <li className="mb-1">
-                        <p className="block p-4 text-sm font-semibold text-gray-400 rounded">Categories</p>
+                        <p className="block p-4 text-sm font-semibold text-gray-400 rounded cursor-pointer  hover:bg-blue-50 hover:text-blue-600" onClick={changeCategoryStatus}>Categories</p>
+                            { isCategoryOpen ?
                             <div>
                                 {categories.map((item => (
                                     <li className="block px-4">
@@ -55,12 +61,13 @@ export default function NavbarMenu(props) {
                                     </li>
                                 )))}                        
                             </div>
+                            : ""}
                     </li>
                     {/* <li className="mb-1">
                         <Link to={"/cart"} onClick={changeState} className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded">Cart</Link>
                     </li> */}
                     {jwt === "" ?
-                    <div className="mt-auto">
+                    <div className="absolute bottom-2 w-72">
                         <div className="pt-6">
                             <Link to={"/login"} onClick={changeState} className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold bg-gray-50 hover:bg-gray-100 rounded-xl">Sign in</Link>
                             <Link to={"/signup"} onClick={changeState} className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl">Sign Up</Link>
@@ -68,9 +75,9 @@ export default function NavbarMenu(props) {
                     </div>
                     : 
                     <div className="">
-                        <li className="pt-6">
-                            <Link to={"/profile"} onClick={changeState} className="block p-4 mb-3 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded text-center">Profile</Link>
-                            <Link to={"/orders"} onClick={changeState} className="block p-4 mb-3 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded text-center">Orders</Link>
+                        <li className="absolute bottom-2 w-72">
+                            <Link to={"/profile"} onClick={changeState} className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold bg-gray-50 hover:bg-gray-100 rounded-xl">Profile</Link>
+                            <Link to={"/orders"} onClick={changeState} className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold bg-gray-50 hover:bg-gray-100 rounded-xl">Orders</Link>
                             <ul className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-red-600 hover:bg-red-700 rounded-xl cursor-pointer" onClick={signOut}>Log Out</ul>
                         </li>
                     </div>

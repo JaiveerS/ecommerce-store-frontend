@@ -21,14 +21,14 @@ export default function ProductPage(props) {
     }
 
     return (
-        <div>
+        <div className="min-h-screen">
         {product.length === 0 ? getProducts() : ""}
         {product.price > 0 && (
-        <div className="flex min-h-screen justify-center flex-wrap">
-            <img className="object-fit h-96 mt-5" alt={product.description} src={product.image}/>
+        <div className="flex justify-center flex-wrap">
+            <img className="object-fit h-96 mt-5 -mb-10" alt={product.description} src={product.image}/>
                 <div className="px-10">
                     <h1 className="pt-10 pb-5 font-semibold">{product.productName}</h1>
-                    <h3 className="py-2">Price: ${product.price}</h3>
+                    <h3 className="py-1">Price: ${product.price}</h3>
                     <h4 className="py-2">Category: {product.category}</h4>
                     <p  className="py-2 max-w-md">{product.description}</p>
                     <div className="flex py-4">
