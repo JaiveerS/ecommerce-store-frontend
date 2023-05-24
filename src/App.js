@@ -11,7 +11,7 @@ import Checkout from "./pages/checkout/Checkout";
 import OrderPlaced from "./pages/orderPlaced/OrderPlaced";
 import Register from "./pages/register/Register";
 import ScrollToTop from "./components/ScrollToTop";
-import Profile from "./pages/profile/profile";
+import Profile from "./pages/profile/Profile";
 import Footer from "./components/Footer";
 import Category from "./pages/category/Category";
 

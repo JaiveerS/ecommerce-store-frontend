@@ -10,9 +10,8 @@ import NavbarMenu from "./NavbarMenu";
 
 export default function Navbar() {
 
-    const {setId,setJwt, cartQuantity, authEndpoint, jwt} = useContext(ShopContext)
+    const {setId,setFirstname, firstname, setLastname, setEmail,setJwt, cartQuantity, authEndpoint, jwt} = useContext(ShopContext)
     const {product,cartItems, setCartItems, getDefaultCart} = useContext(ShopContext)    
-    const [name, setName] = useState("");
     const navigate = useNavigate();
 
     function getName(){
@@ -24,14 +23,16 @@ export default function Navbar() {
           
           instance.get('/token')
           .then(response => {
-              setName(response.data.firstname);
+              setFirstname(response.data.firstname);
+              setLastname(response.data.lastname);
+              setEmail(response.data.email);
               setId(response.data.id);
             //   console.log(response.data);
           })
     }
 
     useEffect(() => {
-        if(jwt !== null && jwt !== "" && name === ""){
+        if(jwt !== null && jwt !== "" && firstname === ""){
             getName();
         }
         if (cartItems.size !== product.length){
@@ -42,7 +43,7 @@ export default function Navbar() {
     function signOut(){
         setJwt("")
         setId("")
-        setName("")
+        setFirstname("")
         navigate('/', {replace: true})
     }
 
@@ -77,7 +78,7 @@ export default function Navbar() {
                                     <li className="px-2 py-2 text-lg cursor-pointer hover:bg-gray-50 rounded-md"><Link className="flex flex-col " to={"/login"}><FaRegUserCircle className="block mx-auto" size={25}/><p className="text-sm">Login</p></Link></li>
                                     :
                                     <div>
-                                        <li className="peer px-2 py-2 text-lg cursor-pointer hover:bg-gray-50 rounded-md"><FaRegUserCircle className="block mx-auto" size={25}/><p className="text-sm">{name}</p></li>
+                                        <li className="peer px-2 py-2 text-lg cursor-pointer hover:bg-gray-50 rounded-md w-20"><FaRegUserCircle className="block mx-auto" size={25}/><p className="text-sm text-center">{firstname}</p></li>
                                         <div className="hidden peer-hover:flex hover:flex flex-col bg-white drop-shadow-lg cursor-pointer">
                                             <ul className="bg-white absolute py-2 px-2 w-full text-center hover:bg-gray-50 cursor-pointer" onClick={toProfile}>Profile</ul>
                                             <ul className="bg-white absolute mt-10 py-2 px-2 w-full text-center hover:bg-gray-50 cursor-pointer" onClick={toOrders}>Orders</ul>
