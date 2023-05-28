@@ -1,6 +1,6 @@
 # E-Commerce Store Frontend
 
-This is the frontend code for an e-commerce store built using React and Tailwind CSS. It provides a user interface for customers to browse and purchase products.
+This is the frontend code for an e-commerce store built using React and TailwindCSS. It provides a user interface for customers to browse and purchase products.
 
 ## Features
 
@@ -13,7 +13,7 @@ This is the frontend code for an e-commerce store built using React and Tailwind
 
 1. Clone the repository:
 
-- `git clone https://github.com/JaiveerS/ecommerce-store-frontend.git`
+ensp`git clone https://github.com/JaiveerS/ecommerce-store-frontend.git`
 
 
 2. Install dependencies:
