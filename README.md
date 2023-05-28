@@ -18,7 +18,7 @@ This is the frontend code for an e-commerce store built using React and Tailwind
 
 2. Install dependencies:
 
-cd ecommerce-store-frontend
+- `cd ecommerce-store-frontend`
 
 `npm install`
 
