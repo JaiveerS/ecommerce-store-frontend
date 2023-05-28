@@ -25,7 +25,7 @@ This is the frontend code for an e-commerce store built using React and Tailwind
 
 3. Start the development server:
 
-  `npm start`
+- `npm start`
 
 
 The application will be accessible at http://localhost:3000.
