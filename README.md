@@ -34,14 +34,15 @@ The application will be accessible at http://localhost:3000.
 
 The project structure is organized as follows:
 
-├── public
-└── src
-├── components
-├── pages
-├── services
-├── styles
-├── App.js
-└── index.js
+- public
+- src
+  - components
+  - pages
+  - services
+  - styles
+  - App.js
+  - index.js
+
 
 
 - `public`: Contains the HTML template and static assets.
