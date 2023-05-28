@@ -13,7 +13,7 @@ This is the frontend code for an e-commerce store built using React and Tailwind
 
 1. Clone the repository:
 
-ensp`git clone https://github.com/JaiveerS/ecommerce-store-frontend.git`
+&ensp `git clone https://github.com/JaiveerS/ecommerce-store-frontend.git`
 
 
 2. Install dependencies:
