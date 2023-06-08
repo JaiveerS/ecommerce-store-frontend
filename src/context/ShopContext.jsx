@@ -15,14 +15,14 @@ export function getDefaultCart(product)
 
 export default function ShopContextProvider(props){
     // shop-backend-v1-production.up.railway.app
-    // const endpoint = "http://localhost:8080/api/products";
-    // const authEndpoint = "http://localhost:8080/api/auth";
-    // const orderEndpoint = "http://localhost:8080/api/orders";
-    // const categoriesEndpoint = "http://localhost:8080/api/categories";
-    const endpoint = "http://140.238.147.51:8080/api/products";
-    const authEndpoint = "http://140.238.147.51:8080/api/auth";
-    const orderEndpoint = "http://140.238.147.51:8080/api/orders";
-    const categoriesEndpoint = "http://140.238.147.51:8080/api/categories";
+    const endpoint = "http://localhost:8080/api/products";
+    const authEndpoint = "http://localhost:8080/api/auth";
+    const orderEndpoint = "http://localhost:8080/api/orders";
+    const categoriesEndpoint = "http://localhost:8080/api/categories";
+    // const endpoint = "http://140.238.147.51:8080/api/products";
+    // const authEndpoint = "http://140.238.147.51:8080/api/auth";
+    // const orderEndpoint = "http://140.238.147.51:8080/api/orders";
+    // const categoriesEndpoint = "http://140.238.147.51:8080/api/categories";
 
 
     const [id, setId] = useState("");

@@ -1,9 +1,19 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { ShopContext } from "../../context/ShopContext"
+import { useNavigate } from "react-router-dom";
+
 
 
 export default function Profile(){
-    const {firstname, lastname, email} = useContext(ShopContext)
+    const {firstname, lastname, email, jwt} = useContext(ShopContext);
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        if (jwt === null || jwt === ""){
+            navigate('/', {replace: true})
+        }
+    })
 
 
     return(

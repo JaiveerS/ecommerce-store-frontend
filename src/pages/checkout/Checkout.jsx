@@ -4,6 +4,7 @@ import OrderMiniSummary from "./OrderMiniSummary";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import FormInput from "../../components/FormInput";
+// import StripeCheckout from "./StripeCheckout";
 
 
 export default function Checkout(){
@@ -141,7 +142,7 @@ export default function Checkout(){
 
 
                         <div className="max-w-md">
-                            <h1 className="font-semibold">Payment Method</h1>
+                            <h1 className="font-semibold pt-4">Payment Method</h1>
                             <div className="pt-2">
                                 <label className="block mb-2 text-sm font-medium text-gray-900">Credit Card Number</label>
                                 <input type="text" name="ccNumber" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="*** *** ****" required/>
@@ -161,6 +162,12 @@ export default function Checkout(){
                                 </div>
                             </div>
                         </div>
+
+                        <div>
+                            <h1 className="font-semibold pt-4">Stripe Payment Method</h1>
+                            {/* <StripeCheckout /> */}
+                        </div>
+
                     </div>
 
 

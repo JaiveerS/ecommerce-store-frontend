@@ -1,12 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import axios from "axios";
 import Orders from "./Orders";
+import { useNavigate } from "react-router-dom";
 
 
 export default function OrderPlaced(){
     const {orderEndpoint, id, jwt} = useContext(ShopContext);
     const [orders, setOrders] = useState([]);
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        if (jwt === null || jwt === ""){
+            navigate('/', {replace: true})
+        }
+    })
 
     function getOrders (){
         const instance = axios.create({
