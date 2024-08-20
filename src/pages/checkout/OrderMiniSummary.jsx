@@ -10,7 +10,7 @@ export default function OrderMiniSummary(props){
 
     return(
         <div className="flex mx-auto">
-            <img className=" h-20 object-fit rounded-lg" alt={description} src={image}/>
+            <img className=" h-20 w-20 object-contain rounded-lg" alt={description} src={image}/>
             <div className="flex flex-col">
                 <p className="font-semibold">{productName}</p>
                 <p className="text-sm">Price: ${price}</p>

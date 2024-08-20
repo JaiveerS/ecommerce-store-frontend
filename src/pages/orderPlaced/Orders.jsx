@@ -18,7 +18,7 @@ export default function Orders(props){
                         <td>{element.productName}</td>
                         <td className="text-center">${element.price}</td>
                         <td className="text-center">{element.quantity}</td>
-                        <td className="text-center">Shipped</td>
+                        <td className="text-center">PROCESSING</td>
                     </tr>
                     ))}
                 </tbody>
