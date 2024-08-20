@@ -163,10 +163,10 @@ export default function Checkout(){
                             </div>
                         </div>
 
-                        <div>
+                        {/*<div>
                             <h1 className="font-semibold pt-4">Stripe Payment Method</h1>
-                            {/* <StripeCheckout /> */}
-                        </div>
+                             <StripeCheckout /> 
+                        </div>*/}
 
                     </div>
 
