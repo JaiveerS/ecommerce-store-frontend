@@ -31,37 +31,10 @@ This is the frontend code for an e-commerce store built using React and Tailwind
 
 The application will be accessible at http://localhost:3000.
 
-## Folder Structure
-
-The project structure is organized as follows:
-
-<pre>
-```
-├── public
-└── src
-    ├── components
-    ├── pages
-    ├── services
-    ├── styles
-    ├── App.js
-    └── index.js
-```
-</pre>
-
-
-
-- `public`: Contains the HTML template and static assets.
-- `src/components`: Holds reusable components.
-- `src/pages`: Contains the main pages of the application.
-- `src/services`: Provides API communication and utility functions.
-- `src/styles`: Contains global CSS styles.
-- `App.js`: Entry point of the application.
-- `index.js`: Renders the application.
-
 ## Usage
 
 1. Register a new user account or log in with existing credentials.
-2. Browse the product catalog, search for specific items, and filter by category.
+2. Browse the product catalog and filter by category.
 3. Add desired products to the shopping cart.
 4. Proceed to checkout and enter shipping and payment information.
 5. Complete the purchase.
@@ -74,10 +47,7 @@ This project utilizes the following technologies and frameworks:
 - React
 - Axios
 
-## Screenshots and Demo
-
-![Homepage](screenshots/homepage.png)
-_This is a screenshot of the homepage._
+## Demo
 
 _[Live Demo](http://140.238.147.51/)_
 
