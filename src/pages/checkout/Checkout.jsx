@@ -117,7 +117,7 @@ export default function Checkout(){
     };
 
     useEffect(() => {
-        if (response.status === 200){
+        if (response.status === 201){
             navigate('/orders', {replace: true})
             removeAllFromCart()
 

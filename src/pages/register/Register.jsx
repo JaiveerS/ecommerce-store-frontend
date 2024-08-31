@@ -85,7 +85,7 @@ export default function Register() {
         console.log("password: " + values.password);
         console.log(authEndpoint);
         axios.post(authEndpoint + "/register", body)
-        .then(response => setResponse(response)).catch(error => setError("Cannot Register Account"));
+        .then(response => setResponse(response)).catch(error => setError(error.response.data.error));
     }
 
     const handleChange = (e) => 
@@ -94,7 +94,7 @@ export default function Register() {
     };
 
     useEffect(() => {
-        response.status === 200 ? setJwt(response.data.token): setJwt("");
+        response.status === 201 ? setJwt(response.data.token): setJwt("");
         // console.log(body)
         if(jwt !== ""){
             setError("");
