@@ -17,6 +17,11 @@ export default function OrderPlaced(){
         }
     })
 
+    useEffect(() => {
+        getOrders();
+    }, [])
+
+
     function getOrders (){
         const instance = axios.create({
             baseURL: orderEndpoint,
@@ -27,10 +32,10 @@ export default function OrderPlaced(){
         instance.get("/" + id)
         .then(response => setOrders(response.data));
     }
+
     return(
         <div className="flex min-h-screen flex-col max-w-screen-lg m-auto">
             {/* <h1 className="text-center text-8xl py-10">ORDER PLACED</h1> */}
-            {orders.length === 0 ? getOrders() : ""}
             {orders.map((item => (
                 <Orders key={item.id} data={item}/>
             ))).reverse()}
