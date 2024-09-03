@@ -47,17 +47,24 @@ export default function OrderSuccess(){
     }, [jwt])
 
     useEffect(() => {
-        const delay = setTimeout(() => {
-            setTimer(prev => prev - 1)
-        }, 1000)    
-
-    },[timer])
-
-
-
-    const timeout = setTimeout(() => {
-        navigate('/orders', {replace: true})
-    }, 5000);
+        // Decrement timer every second
+        const intervalId = setInterval(() => {
+          setTimer(prev => (prev > 0 ? prev - 1 : 0)); // Ensure timer doesn't go below 0
+        }, 1000);
+    
+        // Cleanup interval on component unmount
+        return () => clearInterval(intervalId);
+      }, []); // Empty dependency array to run only once on mount
+    
+      useEffect(() => {
+        // Navigate to '/orders' after 5 seconds
+        const timeoutId = setTimeout(() => {
+          navigate('/orders', { replace: true });
+        }, 5000);
+    
+        // Cleanup timeout on component unmount
+        return () => clearTimeout(timeoutId);
+      }, [navigate]); 
 
     return(
         <div className="mx-auto min-h-screen pt-32">
