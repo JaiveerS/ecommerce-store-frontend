@@ -19,7 +19,7 @@ export default function NavbarMenu(props) {
 
     function getCategories(){
         axios.get(categoriesEndpoint).then((response)=> {
-            console.log(response.data)
+            // console.log(response.data)
             setCategories(response.data)
         })
     }
@@ -48,17 +48,17 @@ export default function NavbarMenu(props) {
             <div>
                 {categories.length === 0 ? getCategories() : ""}
                 <ul>
-                    <li className="mb-1">
+                    <li key="home" className="mb-1">
                         <Link to={"/"} onClick={changeState} className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded">Home</Link>
                     </li>
-                    <li className="mb-1">
+                    <li key="dropdown" className="mb-1">
                         <p className="block p-4 text-sm font-semibold text-gray-400 rounded cursor-pointer  hover:bg-blue-50 hover:text-blue-600" onClick={changeCategoryStatus}>Categories</p>
                             { isCategoryOpen ?
                             <div>
                                 {categories.map((item => (
-                                    <li className="block px-4">
+                                    <ul key={item} className="block px-4">
                                         <Link to={"/category/" + item} onClick={changeState} className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded">{item}</Link>
-                                    </li>
+                                    </ul>
                                 )))}                        
                             </div>
                             : ""}
