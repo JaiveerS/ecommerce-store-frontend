@@ -80,12 +80,12 @@ export default function Register() {
     function handleSubmit(e){
         e.preventDefault();
 
-        console.log("your trying to log in");
+        console.log("your trying to register");
         console.log("email: " + values.email);
         console.log("password: " + values.password);
         console.log(authEndpoint);
         axios.post(authEndpoint + "/register", body)
-        .then(response => setResponse(response)).catch(error => setError(error.response.data.error));
+        .then(response => setResponse(response)).catch(error => setError(error.response.data.message));
     }
 
     const handleChange = (e) => 
@@ -95,13 +95,12 @@ export default function Register() {
 
     useEffect(() => {
         response.status === 201 ? setJwt(response.data.token): setJwt("");
-        // console.log(body)
         if(jwt !== ""){
             setError("");
             navigate('/', {replace: true});
 
         }
-    },[jwt, navigate, response.data , response.status, setJwt, values]);
+    },[jwt, response.data , response.status]);
 
     return (
         <section>
@@ -111,6 +110,8 @@ export default function Register() {
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                         Register your account
                     </h1>
+                    {console.log(response)}
+                    {console.log(error)}
                     <p className="text-red-600 font-bold">{error}</p>
                     <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                         {input.map((input) => (
