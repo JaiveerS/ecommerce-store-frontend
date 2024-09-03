@@ -32,7 +32,7 @@ export default function OrderPlaced(){
             {/* <h1 className="text-center text-8xl py-10">ORDER PLACED</h1> */}
             {orders.length === 0 ? getOrders() : ""}
             {orders.map((item => (
-                <Orders data={item}/>
+                <Orders key={item.id} data={item}/>
             ))).reverse()}
             {orders.length === 0 && jwt !== "" ? <div className="p-20 font-extrabold text-5xl text-center">No Orders Placed</div> : ""}
         </div>
