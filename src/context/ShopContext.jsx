@@ -1,6 +1,5 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 // import { PRODUCTS } from "../products";
-
 
 export const ShopContext = createContext(null);
 
@@ -15,14 +14,15 @@ export function getDefaultCart(product)
 
 export default function ShopContextProvider(props){
     // shop-backend-v1-production.up.railway.app
-    const endpoint = "http://localhost:8080/api/products";
-    const authEndpoint = "http://localhost:8080/api/auth";
-    const orderEndpoint = "http://localhost:8080/api/orders";
-    const categoriesEndpoint = "http://localhost:8080/api/categories";
-    // const endpoint = "http://140.238.147.51:8080/api/products";
-    // const authEndpoint = "http://140.238.147.51:8080/api/auth";
-    // const orderEndpoint = "http://140.238.147.51:8080/api/orders";
-    // const categoriesEndpoint = "http://140.238.147.51:8080/api/categories";
+    // const endpoint = "http://localhost:8080/api/products";
+    // const authEndpoint = "http://localhost:8080/api/auth";
+    // const orderEndpoint = "http://localhost:8080/api/orders";
+    // const categoriesEndpoint = "http://localhost:8080/api/categories";
+    const baseEndpoint = "http://129.153.49.68:8080";
+    const endpoint = "http://129.153.49.68:8080/api/products";
+    const authEndpoint = "http://129.153.49.68:8080/api/auth";
+    const orderEndpoint = "http://129.153.49.68:8080/api/orders";
+    const categoriesEndpoint = "http://129.153.49.68:8080/api/categories";
 
 
     const [id, setId] = useState("");
@@ -33,6 +33,66 @@ export default function ShopContextProvider(props){
     const [cartQuantity, setCartQuantity] = useState(0);
     const [product, setProduct] = useState([])
     const [cartItems, setCartItems] = useState(getDefaultCart(product));
+
+    useEffect(() => {
+        const storedId = sessionStorage.getItem('id');
+        const storedFirstname = sessionStorage.getItem('firstname');
+        const storedLastname = sessionStorage.getItem('lastname');
+        const storedEmail = sessionStorage.getItem('email');
+        const storedJwt = sessionStorage.getItem('jwt');
+        // const storedCartQuantity = sessionStorage.getItem('cartQuantity');
+        // const storedProduct = sessionStorage.getItem('product')
+        // const storedCartItems = sessionStorage.getItem('cartItems');
+
+        // console.log(storedProduct);
+        // console.log(storedCartItems);
+
+        if (storedId) setId(storedId);
+        if (storedFirstname) setFirstname(storedFirstname);
+        if (storedLastname) setLastname(storedLastname);
+        if (storedEmail) setEmail(storedEmail);
+        if (storedJwt) setJwt(storedJwt);
+        // if (storedCartQuantity) setCartQuantity(Number(storedCartQuantity));
+        // if (storedProduct) setProduct(JSON.parse(storedProduct));
+        // if (storedCartItems) setCartItems(JSON.parse(storedCartItems));
+    }, []);
+
+
+    useEffect(() => {
+        sessionStorage.setItem('id', id);
+    },[id])
+
+    useEffect(() => {
+        sessionStorage.setItem('firstname', firstname);
+    },[firstname])
+
+    useEffect(() => {
+        sessionStorage.setItem('lastname', lastname);
+    },[lastname])
+
+    useEffect(() => {
+        sessionStorage.setItem('email', email);
+    },[email])
+
+    useEffect(() => {
+        sessionStorage.setItem('jwt', jwt);
+        // console.log("changed jwt");
+        // console.log(jwt);
+    },[jwt])
+
+    useEffect(() => {
+        sessionStorage.setItem('cartQuantity', cartQuantity);
+    },[cartQuantity])
+
+    useEffect(() => {
+        sessionStorage.setItem('product', JSON.stringify(product));
+    },[product])
+
+    useEffect(() => {
+        sessionStorage.setItem('cartItems', JSON.stringify(cartItems));
+    },[cartItems])
+
+
 
 
     const addToCart = (id) =>{
@@ -56,9 +116,22 @@ export default function ShopContextProvider(props){
         setCartQuantity(0);
     }
 
+
+
+
     // console.log(cartItems.size)
     
-    const contextValue= {removeAllFromCart, id, setId,firstname, setFirstname,lastname,setLastname,email,setEmail, jwt, setJwt, endpoint,authEndpoint,orderEndpoint,categoriesEndpoint, setCartItems,getDefaultCart, product,setProduct, cartQuantity,cartItems, addToCart, decreaseCountInCart, removeFromCart}
+    const contextValue= {removeAllFromCart,
+        product,setProduct,
+        id, setId,
+        firstname, setFirstname,
+        lastname,setLastname,
+        email,setEmail,
+        jwt, setJwt,
+        endpoint,authEndpoint,orderEndpoint,categoriesEndpoint,baseEndpoint,
+        setCartItems,getDefaultCart,
+        cartQuantity,cartItems,
+        addToCart, decreaseCountInCart, removeFromCart}
     
     return(
         <ShopContext.Provider value={contextValue}>
