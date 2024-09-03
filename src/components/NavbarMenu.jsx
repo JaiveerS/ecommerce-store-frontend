@@ -45,7 +45,7 @@ export default function NavbarMenu(props) {
             <div className="flex items-center mb-8">
                 <Hamburger color="black" toggled={isOpen} toggle={setIsOpen}/>
             </div>
-            <div>
+            <div className="overflow-y-scroll pb-40">
                 {categories.length === 0 ? getCategories() : ""}
                 <ul>
                     <li key="home" className="mb-1">
@@ -68,17 +68,17 @@ export default function NavbarMenu(props) {
                     </li> */}
                     {jwt === "" ?
                     <div className="absolute bottom-2 w-72">
-                        <div className="pt-6">
+                        <div className="">
                             <Link to={"/login"} onClick={changeState} className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold bg-gray-50 hover:bg-gray-100 rounded-xl">Sign in</Link>
                             <Link to={"/signup"} onClick={changeState} className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl">Sign Up</Link>
                         </div>
                     </div>
                     : 
-                    <div className="">
-                        <li className="absolute bottom-2 w-72">
-                            <Link to={"/profile"} onClick={changeState} className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold bg-gray-50 hover:bg-gray-100 rounded-xl">Profile</Link>
-                            <Link to={"/orders"} onClick={changeState} className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold bg-gray-50 hover:bg-gray-100 rounded-xl">Orders</Link>
-                            <ul className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-red-600 hover:bg-red-700 rounded-xl cursor-pointer" onClick={signOut}>Log Out</ul>
+                    <div>
+                        <li className="absolute bottom-2 w-72 bg-white">
+                            <Link to={"/profile"} onClick={changeState} className="block px-4 py-2 mb-3 leading-loose text-xs text-center font-semibold bg-gray-50 hover:bg-gray-100 rounded-xl">Profile</Link>
+                            <Link to={"/orders"} onClick={changeState} className="block px-4 py-2 mb-3 leading-loose text-xs text-center font-semibold bg-gray-50 hover:bg-gray-100 rounded-xl">Orders</Link>
+                            <ul className="block px-4 py-2 mb-2 leading-loose text-xs text-center text-white font-semibold bg-red-600 hover:bg-red-700 rounded-xl cursor-pointer" onClick={signOut}>Log Out</ul>
                         </li>
                     </div>
                     }

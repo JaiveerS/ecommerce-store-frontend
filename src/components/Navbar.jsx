@@ -65,7 +65,7 @@ export default function Navbar() {
 
     return(
         <div>
-                <nav className="sticky bg-white top-0 z-50 flex flex-wrap items-center justify-between py-3 shadow">
+                <nav className="min-w-full bg-white top-0 z-50 flex flex-wrap items-center justify-between py-3 shadow">
                     <div className="container mx-auto flex flex-wrap items-center justify-between">
                         <div className="pl-4 w-1/3 ">
                             <Hamburger color="black" toggled={isOpen} toggle={setIsOpen}/>
