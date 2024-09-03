@@ -1,34 +1,55 @@
+import React, { useContext, useEffect, useState, Suspense }  from "react";
 import axios from "axios";
-import Stripe from "react-stripe-checkout";
-import React, { useContext } from "react";
-import { ShopContext } from "../../context/ShopContext";
+import {ShopContext} from "../../context/ShopContext";
+import {loadStripe} from '@stripe/stripe-js';
+import {
+  EmbeddedCheckoutProvider,
+  EmbeddedCheckout
+} from '@stripe/react-stripe-js';
 
-export default function StripeCheckout(){
-    const {jwt} = useContext(ShopContext)
 
-    async function handleToken(token) {
-        console.log(token);
-        await axios.post("http://localhost:8080/api/orders/charge", "", {
-            headers: {
-            'Authorization': 'Bearer '+ jwt,
-            timeout: 1000,
-            token: token.id,
-            amount: 500,
-        },}).then(() => {
-           alert("Payment Success");
-           }).catch((error) => {
-           alert(error);
-           });
-        }
+const stripePromise = loadStripe("pk_test_51MygPJFUjGSVabd8a7xPT0k0OcEaiDupWSfwH6s5sZRrW5va9qHo74gCYMKy44vFM1CAcDAaekHCHPHUQ4UvapOT00WAqD1Z9o")
 
-    return(
-        <div>
-            <Stripe
-                stripeKey="pk_test_51MygPJFUjGSVabd8a7xPT0k0OcEaiDupWSfwH6s5sZRrW5va9qHo74gCYMKy44vFM1CAcDAaekHCHPHUQ4UvapOT00WAqD1Z9o"
-                token={handleToken}
-                amount={5000}
-                theme = 'stripe'
-            />
-        </div>
-    )
+export default function StripeCheckout(body){
+  const {jwt,baseEndpoint} = useContext(ShopContext);
+  const [options, setOptions] = useState("");
+  const [error, setError] = useState("");
+
+
+  
+
+  function getClientSecret (){
+    // console.log("fetching");
+
+    const fetch = axios.create({
+      baseURL: baseEndpoint,
+      headers: {'Authorization': 'Bearer '+jwt}
+    }) 
+
+    fetch.post("/api/checkout/hosted", body.body).then((response)=>{
+      setOptions(response.data).catch(error => setError(error.response.data))
+    })
+
+  }
+
+  useEffect(() =>{
+    // console.log("changed");
+    // console.log(body.body.orderItems)
+    if(body.body.orderItems.length > 0){
+      getClientSecret();
+    }
+  }, [body.body.orderItems]);
+
+  return(
+    <div>
+      {/* {options === "" ? getClientSecret() : ""} */}
+        <EmbeddedCheckoutProvider
+          stripe={stripePromise}
+          options={options}
+        >
+          <EmbeddedCheckout />
+        </EmbeddedCheckoutProvider>
+      {error}
+    </div>
+  )
 }
