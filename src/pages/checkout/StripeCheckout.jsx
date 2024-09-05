@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, Suspense }  from "react";
+import React, { useContext, useEffect, useState}  from "react";
 import axios from "axios";
 import {ShopContext} from "../../context/ShopContext";
 import {loadStripe} from '@stripe/stripe-js';

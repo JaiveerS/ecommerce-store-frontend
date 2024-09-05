@@ -1,5 +1,5 @@
 
-export default function Orders(props){
+export default function Orders(props) {
     const item = props.data
     return (
         <div className="px-10 py-5 flex flex-col">
@@ -14,17 +14,17 @@ export default function Orders(props){
                 </thead>
                 <tbody>
                     {item.orderItems.map((element) => (
-                    <tr>
-                        <td>{element.productName}</td>
-                        <td className="text-center">${element.price}</td>
-                        <td className="text-center">{element.quantity}</td>
-                        <td className="text-center">Ordered</td>
-                    </tr>
+                        <tr>
+                            <td>{element.productName}</td>
+                            <td className="text-center">${element.price}</td>
+                            <td className="text-center">{element.quantity}</td>
+                            <td className="text-center">Ordered</td>
+                        </tr>
                     ))}
                 </tbody>
             </table>
 
-            <details  className="bg-gray-200 open:bg-white duration-300 px-5">
+            <details className="bg-gray-200 open:bg-white duration-300 px-5">
                 <summary className="bg-inherit py-3 text-lg cursor-pointer">Shipping Details</summary>
                 <div className="bg-white px-5 py-3 border border-gray-300 text-sm font-light">
                     <p>Shipping To: {item.fullName}</p>

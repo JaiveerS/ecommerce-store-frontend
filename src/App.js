@@ -8,7 +8,7 @@ import Cart from "./pages/cart/Cart";
 import ProductPage from "./pages/product/ProductPage";
 import NotFound from "./pages/404/NotFound";
 import Checkout from "./pages/checkout/Checkout";
-import OrderPlaced from "./pages/orderPlaced/OrderPlaced";
+import OrderPlaced from "./pages/order/OrderPlaced";
 import Register from "./pages/register/Register";
 import ScrollToTop from "./components/ScrollToTop";
 import Profile from "./pages/profile/Profile";

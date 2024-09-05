@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState, Suspense } from "react"
+import React, { useContext, useEffect} from "react"
 import { ShopContext } from "../../context/ShopContext";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import StripeCheckout from "./StripeCheckout";
 
 
@@ -26,6 +25,7 @@ export default function Checkout(){
             if(cartItems.get(product.id) !== 0){
                 cartProducts.push({productId: product.id, productName: product.productName, price: product.price, quantity: cartItems.get(product.id)});
             }
+            return "";
                     }
                 )
             }
