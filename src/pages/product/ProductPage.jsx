@@ -1,6 +1,7 @@
 import React, { useState, useContext} from "react";
 import axios from "axios";
 import { ShopContext } from "../../context/ShopContext";
+import image_not_found from "../../assets/image_not_found.png";
 
 
 
@@ -25,7 +26,7 @@ export default function ProductPage(props) {
         {product.length === 0 ? getProducts() : ""}
         {product.price > 0 && (
         <div className="flex justify-center flex-wrap">
-            <img className="object-contain h-96 w-96 mt-5 -mb-10" alt={product.description} src={product.image}/>
+            <img className="object-contain h-96 w-96 mt-5 -mb-10" alt={product.description} src={product.image} onError={(e) => { e.target.src ={image_not_found}}}/>
                 <div className="px-10">
                     <h1 className="pt-10 pb-5 font-semibold">{product.productName}</h1>
                     <h3 className="py-1">Price: ${product.price}</h3>
