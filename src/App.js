@@ -21,7 +21,10 @@ function App() {
   return (
       <ShopContextProvider>
         <Router>
+        <header className="sticky top-0 z-50 bg-white shadow">
           <Navbar />
+        </header>
+        
           <ScrollToTop/>
           <Routes>
             <Route exact path="/" element={<Home />}/>
