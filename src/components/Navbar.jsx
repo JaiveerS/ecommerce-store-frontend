@@ -79,7 +79,7 @@ export default function Navbar() {
                             {jwt === null || jwt === "" ? 
                                 <li key="login" className="px-2 py-2 text-lg cursor-pointer hover:bg-gray-50 rounded-md hidden md:block"><Link className="flex flex-col " to={"/login"}><FaRegUserCircle className="block mx-auto" size={25}/><p className="text-sm">Login</p></Link></li>
                                 :
-                                <div>
+                                <div className="hidden md:block">
                                     <li className="peer px-2 py-2 text-lg cursor-pointer hover:bg-gray-300 rounded-md w-20"><FaRegUserCircle className="block mx-auto" size={25}/><p className="text-sm text-center">{firstname}</p></li>
                                     <div className="hidden peer-hover:flex hover:flex flex-col bg-white drop-shadow-lg cursor-pointer">
                                         <li key="profile" className="bg-white absolute py-2 px-2 w-full text-center hover:bg-gray-300 cursor-pointer" onClick={toProfile}>Profile</li>
@@ -88,7 +88,7 @@ export default function Navbar() {
                                     </div>
                                 </div>
                             }
-                            <li key="cart" className="py-2 text-lg rounded-md hover:bg-gray-300"><Link className="flex py-1 px-2" to={"/cart"}><CgShoppingCart size={30}/> {cartQuantity}</Link></li>
+                            <li key="cart" className="py-2 text-lg rounded-md hover:bg-gray-300 mr-6 md:mr-0"><Link className="flex py-1 px-2" to={"/cart"}><CgShoppingCart size={30}/> {cartQuantity}</Link></li>
                         </ul>
                     </div>
                 </nav>

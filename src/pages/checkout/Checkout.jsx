@@ -20,7 +20,7 @@ export default function Checkout(){
     const body = {userId: id, orderItems: cartProducts}
 
     return (
-        <div>
+        <div className="min-h-screen">
             {product.map((product) => {
             if(cartItems.get(product.id) !== 0){
                 cartProducts.push({productId: product.id, productName: product.productName, price: product.price, quantity: cartItems.get(product.id)});
