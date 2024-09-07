@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import axios from "axios";
 // import { PRODUCTS } from "../products";
 
 export const ShopContext = createContext(null);
@@ -13,7 +14,8 @@ export function getDefaultCart(product)
 }
 
 export default function ShopContextProvider(props){
-    // shop-backend-v1-production.up.railway.app
+    // shop-backend-v1-production.up.railway.
+    // const baseEndpoint = "http://localhost:8080"
     // const endpoint = "http://localhost:8080/api/products";
     // const authEndpoint = "http://localhost:8080/api/auth";
     // const orderEndpoint = "http://localhost:8080/api/orders";
@@ -96,6 +98,7 @@ export default function ShopContextProvider(props){
 
 
     const addToCart = (id) =>{
+
         setCartItems((prev) => new Map(prev).set(id, prev.get(id)+ 1));
         setCartQuantity((prev) => prev + 1);
     }
@@ -117,12 +120,19 @@ export default function ShopContextProvider(props){
     }
 
 
+    const getProducts = () => {
+        axios.get(endpoint).then((response)=> {
+            setProduct(response.data._embedded.productList)
+        })
+    }
+
+
 
 
     // console.log(cartItems.size)
     
     const contextValue= {removeAllFromCart,
-        product,setProduct,
+        product,setProduct, getProducts,
         id, setId,
         firstname, setFirstname,
         lastname,setLastname,

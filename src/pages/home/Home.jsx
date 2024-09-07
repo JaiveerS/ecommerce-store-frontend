@@ -5,13 +5,8 @@ import axios from "axios";
 
 
 export default function Home() {
-    const {product, setProduct, endpoint} = useContext(ShopContext)
+    const {product, getProducts} = useContext(ShopContext)
 
-    function getProducts (){
-        axios.get(endpoint).then((response)=> {
-            setProduct(response.data._embedded.productList)
-        })
-    }
 
     return (
         <div>
