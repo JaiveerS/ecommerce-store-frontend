@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext"
 import axios from "axios";
 import Product from "../pages/home/Product";
@@ -8,6 +8,7 @@ import Product from "../pages/home/Product";
 export default function Recommendations({id}){
     const [product, setProduct] = useState();
     const {endpoint} = useContext(ShopContext);
+    const location = useLocation();
 
     //send id of item
     function getRecommendations (){
@@ -18,7 +19,7 @@ export default function Recommendations({id}){
 
     useEffect(() =>{
         getRecommendations();
-    },[])
+    },[location.key])
 
 
     return (
