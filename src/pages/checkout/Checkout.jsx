@@ -22,7 +22,7 @@ export default function Checkout(){
     return (
         <div className="min-h-screen">
             {product.map((product) => {
-            if(cartItems.get(product.id) !== 0){
+            if(cartItems.has(product.id)){
                 cartProducts.push({productId: product.id, productName: product.productName, price: product.price, quantity: cartItems.get(product.id)});
             }
             return "";

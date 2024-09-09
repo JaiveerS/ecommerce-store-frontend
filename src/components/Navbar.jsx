@@ -12,7 +12,6 @@ import Search from "./Search";
 export default function Navbar() {
 
     const {setId,setFirstname, firstname, setLastname, setEmail,setJwt, cartQuantity, authEndpoint, jwt} = useContext(ShopContext)
-    const {product,cartItems, setCartItems, getDefaultCart, getProducts} = useContext(ShopContext)    
     const navigate = useNavigate();
 
     function getName(){
@@ -35,9 +34,6 @@ export default function Navbar() {
     useEffect(() => {
         if(jwt !== null && jwt !== "" && firstname === ""){
             getName();
-        }
-        if (cartItems.size !== product.length){
-            setCartItems(getDefaultCart(product))
         }
     })
 
@@ -63,10 +59,6 @@ export default function Navbar() {
     // }
 
     // isOpen ? disableBodyScroll(document) : enableBodyScroll(document);
-
-    useEffect(()=>{
-        getProducts()
-    }, [])
 
     return(
         <div>

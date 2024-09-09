@@ -4,15 +4,6 @@ import axios from "axios";
 
 export const ShopContext = createContext(null);
 
-export function getDefaultCart(product)
-{
-    let cart = new Map();
-    product.forEach(element => {
-        cart.set(element.id, 0);
-    });
-    return(cart);
-}
-
 export default function ShopContextProvider(props){
     // shop-backend-v1-production.up.railway.
     // const baseEndpoint = "http://localhost:8080"
@@ -34,7 +25,7 @@ export default function ShopContextProvider(props){
     const [jwt, setJwt] = useState("");
     const [cartQuantity, setCartQuantity] = useState(0);
     const [product, setProduct] = useState([])
-    const [cartItems, setCartItems] = useState(getDefaultCart(product));
+    const [cartItems, setCartItems] = useState(new Map());
 
     useEffect(() => {
         const storedId = sessionStorage.getItem('id');
@@ -57,6 +48,8 @@ export default function ShopContextProvider(props){
         // if (storedCartQuantity) setCartQuantity(Number(storedCartQuantity));
         // if (storedProduct) setProduct(JSON.parse(storedProduct));
         // if (storedCartItems) setCartItems(JSON.parse(storedCartItems));
+
+        getProducts()
     }, []);
 
 
@@ -98,24 +91,37 @@ export default function ShopContextProvider(props){
 
 
     const addToCart = (id) =>{
-
-        setCartItems((prev) => new Map(prev).set(id, prev.get(id)+ 1));
-        setCartQuantity((prev) => prev + 1);
+        setCartItems((prev) => prev.has(id) ? new Map(prev).set(id, prev.get(id) + 1): new Map(prev).set(id, 1))
+        // setCartItems((prev) => new Map(prev).set(id, prev.get(id)+ 1));
+        setCartQuantity((prev) => {return prev + 1});
     }
 
     const decreaseCountInCart = (id) =>{
-        setCartItems((prev) => new Map(prev).set(id, prev.get(id)-1))
+        setCartItems((prev) => {
+            const newMap = new Map(prev)
+            prev.get(id) === 1 ?
+            newMap.delete(id) : newMap.set(id, newMap.get(id)-1)
+            return newMap;
+        })
+
         setCartQuantity((prev) => prev - 1);
     }
 
     const removeFromCart = (id) =>{
-        const amount = cartItems.get(id)
-        setCartItems((prev) => new Map(prev).set(id, 0))
-        setCartQuantity((prev) => prev - amount);
+        // const amount = cartItems.get(id)
+        setCartItems((prev) => {
+            const newMap = new Map(prev);
+            const amount = newMap.get(id);
+            newMap.delete(id);
+
+            setCartQuantity((prev) => (amount ? prev - amount : prev));
+
+            return newMap;
+        })
     }
 
     const removeAllFromCart = () =>{
-        setCartItems(getDefaultCart(product));
+        setCartItems(new Map());
         setCartQuantity(0);
     }
 
@@ -132,14 +138,14 @@ export default function ShopContextProvider(props){
     // console.log(cartItems.size)
     
     const contextValue= {removeAllFromCart,
-        product,setProduct, getProducts,
+        product,setProduct,
         id, setId,
         firstname, setFirstname,
         lastname,setLastname,
         email,setEmail,
         jwt, setJwt,
         endpoint,authEndpoint,orderEndpoint,categoriesEndpoint,baseEndpoint,
-        setCartItems,getDefaultCart,
+        setCartItems,
         cartQuantity,cartItems,
         addToCart, decreaseCountInCart, removeFromCart}
     

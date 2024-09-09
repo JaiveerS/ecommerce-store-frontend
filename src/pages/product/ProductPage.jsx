@@ -20,14 +20,14 @@ export default function ProductPage(props) {
     const thisEndpoint = endpoint + "/" + id;
     const cartItemAmount = cartItems.get(id);
 
-    function getProducts (){
+    function getRecommended (){
         axios.get(thisEndpoint).then((response)=> {
             setProduct(response.data)
         })
     }
 
     useEffect(() => {
-        getProducts()
+        getRecommended()
         // console.log("changed url")
     },[location.key])
 
